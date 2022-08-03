@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img01/conta_gotas.png">
+    <link rel="stylesheet" href="seletor2.0.css">
+    <link rel="stylesheet" href="scroll_bar.css">
+    <title>Que cor é esta?</title>
+</head>
+
+<body>
+    <main>
+        <div class="topo"> <img class="logo" src="./img01/logo.PNG" alt="QUE COR É ESTA?" class="logo" draggable="false">
+        </div>
+        <div class="corpo">
+            <div class="intro">
+                <h1>Descubra o código de cor de qualquer imagem</h1>
+                <p>Neste site é possível obter o código de cor RGB a partir de qualquer imagem.</br> Clique no
+                    campo abaixo e insira uma imagem, posteriormente clique em qualquer</br> parte da imagem
+                    para obter o código de cor RGB, HSL ou HEX do ponto clicado.</p>
+            </div>
+            <div class="campo">
+                <div class="content"> 
+                    <img src="./img01/fechar.png" alt="X" id="fechar">
+                    <div class="entrada">
+                        <div class="preview" id="preview">
+                            <h1 class="msg">Clique aqui para inserir a imagem</h1>
+                            <img id="image" draggable="false">
+                            <canvas id="cs" style="display:none;"></canvas>
+                            <input type="file" name="arquivo1" id="arquivo" accept="image/*">
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="saida">
+                    <p class="p1">Posição do mouse</p>
+                    <p class="p2">Cor selecionada</p>
+                    <div class="cor">
+                        <div id="previewCor"></div>
+                        <div id="selectCor"></div>
+                    </div>
+                    <div id="select">
+
+                        <div name="resultado" id="resultado"></div>
+                    </div>
+
+                </div>
+            </div>
+            <section class="info">
+                <div class="expli">
+                    <h2>-Código de cor-</h2>
+                    <p>Códigos de cor são uma maneira numérica de descrever as cores em um sistema de cores.
+                        <br>
+                        A maioria dos modelos de cores possui 3 dimensões, como a mais conhecida:
+                        <br>
+                        RGB. De Vermelho, Verde e Azul.
+                    </p>
+                </div>
+                <div class="rgb">
+                    <h2>O que é RGB?</h2>
+                    <p>RGB é a sigla do sistema de cores aditivas formado pelas iniciais das cores em inglês Red, Green e Blue, que significa em português, respectivamente, Vermelho, Verde e Azul.
+                    </p>
+                    <p>
+                    O sistema de cores luminosas RGB (também designado por cor-luz) é usado nos objetos que emitem luz como, por exemplo, os monitores de computador e televisão, as câmeras digitais, o scanner, entre outros.
+                    </p>
+                    <p>
+                    As cores são obtidas através das misturas das três cores primárias, em quantidades determinadas. Cada uma das cores obtidas estão enquadradas numa escala que varia de 0 a 255. Quando a mistura das três cores está no valor mínimo (0, 0, 0), o resultado é a cor preta. Quanto está no máximo (255, 255, 255), resulta na cor branca.
+                    </p>
+                    <p>
+                    A variação entre valores mínimos corresponde a tons escuros e entre os valores máximos, os tons são mais intensos, mais claros.
+                    </p>
+
+                    <img src="./img01/Photoshop-exemplo-RGB.png" alt="exemplo RGB" class="ex_rgb">
+                    <img src="./img01/Photoshop-exemplo-RGB2.png" alt="" class="ex_rgb2">
+
+                </div>
+                <div class="hsl">
+                    <h2>O que é HSL?</h2>
+                    <p>O padrão HSL é representado por Hue (tom), Saturation (saturação) e Lightness (luminosidade). O valor do tom é medido em ângulos expresso em graus. O valor de saturação é medido em porcentagem, sendo 0% um leve sombreado de saturação e 100% uma saturação total da cor. O valor de luminosidade também é expresso em porcentagem.
+                    </p>
+                    <p>
+                    O HSL foi projetado para ser legível por humanos e está ganhando popularidade, principalmente como uma alternativa RGB.
+                    </p>
+                    <p>                        
+                    Na prática, a matiz significa cor e usa os graus da roda de cores para indicar a cor que você está usando. Se você conhece a roda de cores e as posições dessas cores principais, deve ser capaz de dizer que 45 parecerá laranja e 270 parecerá roxo apenas pensando nisso por um segundo.
+                    </p>
+                    <img src="./img01/ex_hsl.jpg" alt="exemplo de HSL" class="ex_hsl">
+                </div>
+                <div class="hex">
+                    <h2>O que é HEX?</h2>
+                    <p>O padrão de cor HEX, ou hexadecimal, tem sintaxe muito mais curta que a RGB e HSL. Além disso, não possui todas as vantagens que as outras especificações nos dão, começando pelo canal alpha. Contudo, com o HTML e a grande maioria dos programas visuais dando suporte ao formato hexadecimal ele ainda perdurará durante muito tempo ainda em nossas vidas.
+                    </p>
+                    <p>
+                    O código Hexadecimal para cores consiste em seis letras ou números precedidos do “#” e seus números significam:
+                    </p>
+                    <p>
+                    Os dois primeiros elementos representam a intensidade de vermelho;
+                    O terceiro e quarto elementos representam a intensidade de verde;
+                    Os dois últimos a intensidade de azul.
+                    Desta forma, o resultado final será a combinação dessas três cores em diferentes intensidades, formando a cor desejada. Os valores variam entre 00 (mais escuro) até FF (mais claro).
+                    </p>
+                    <p>    
+                    Por exemplo, temos o código #FFFFFF, que representa a cor branca, pois tem a intensidadeMovi máxima das três cores. Do mesmo modo, #FF0000 representa a cor vermelha, com intensidade máxima de vermelho e nenhuma intensidade para verde e azul.
+                    </p>
+                    <img src="./img01/Photoshop-exemplo-Hex.png" alt="Photoshop exemplo Hex" class="ex_hex">
+                    <img src="./img01/Photoshop-exemplo-Hex2.png" alt="Photoshop exemplo 2 Hex" class="ex_hex2">
+
+
+                </div>
+            </section>
+        </div>
+    <footer>
+        <p>&copy; 2022 - Felipe - Todos os diretos reservados<p>
+    </footer>
+    </main>
+
+    <script src="seletor.js"></script>
+</body>
+
+</html>
