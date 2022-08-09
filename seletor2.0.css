@@ -320,6 +320,15 @@ footer p{
     height:20px;
 
 }
+.linkedin:hover{
+    background-color: rgba(0, 0, 0, 0.753);
+}
 .p-footer{
     padding:0px
+}
+a{
+    color:#fff; 
+}
+a:hover{
+    color:rgba(0, 0, 0, 0.678);
 }
