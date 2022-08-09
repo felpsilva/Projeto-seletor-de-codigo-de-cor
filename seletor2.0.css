@@ -153,7 +153,8 @@ footer{
  font-family: Arial, Helvetica, sans-serif;
  padding-top: 20px;
  background-color: rgba(0, 0, 0, 0.66);
- box-shadow: 0px 0px 10px rgb(0, 0, 0)
+ box-shadow: 0px 0px 10px rgb(0, 0, 0);
+ position:relative;
 }
 footer p{
  color: rgb(255, 255, 255);
@@ -313,4 +314,12 @@ footer p{
 
 .msgDesativo{
     display:none;
+}
+.linkedin{
+    width:20px;
+    height:20px;
+
+}
+.p-footer{
+    padding:0px
 }
