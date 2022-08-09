@@ -9,10 +9,18 @@ preview.onclick = () =>{
   
 }
 
-let image = document.getElementById('image')
+let image = document.getElementById('image');
 let fechar = document.querySelector("#fechar");
 let msg = document.querySelector(".msg");
-fechar.classList.add('fecharOff')
+fechar.classList.add('fecharOff');
+let zoom = document.querySelector('.controleTamanho');
+zoom.classList.add('controleTamanhoOff');
+let mais = document.querySelector('.mais');
+let menos = document.querySelector('.menos');
+
+mais.addEventListener('click', () =>{
+    
+})
 
 
 fechar.addEventListener('click', function(){
@@ -22,7 +30,8 @@ fechar.addEventListener('click', function(){
     previewCor.style.backgroundColor = "rgba(255,255,255, 0)"
     selectCor.style.backgroundColor = "rgba(255,255,255, 0)"
     resultado.innerHTML = '';
-    msg.classList.remove('msgDesativo')
+    msg.classList.remove('msgDesativo');
+    zoom.classList.add('controleTamanhoOff')
 });
 
 
@@ -35,11 +44,10 @@ window.addEventListener('DOMContentLoaded', () =>{
             image.setAttribute('src',endereco.result)
         }
         endereco.readAsDataURL(arquivo);
-        //image.style.width = '100%';
-        //image.style.height = '100%';
 
         fechar.classList.remove('fecharOff');
-        msg.classList.add('msgDesativo')
+        msg.classList.add('msgDesativo');
+        zoom.classList.remove('controleTamanhoOff');
     });   
 });
 
