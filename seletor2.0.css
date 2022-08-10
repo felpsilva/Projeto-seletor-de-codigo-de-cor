@@ -377,7 +377,11 @@ a:hover{
     display:none;
 }
 
-/*#image{
-    width: 100%;
-    height: 100%;
+/*.imageZoom{
+    transform:scale(1.1);
+    overflow-y:scroll;
+    overflow-x:scroll
+}
+.imageFar{
+    transform:scale(0.75);
 }*/

@@ -18,8 +18,26 @@ zoom.classList.add('controleTamanhoOff');
 let mais = document.querySelector('.mais');
 let menos = document.querySelector('.menos');
 
+
+let largura = 100;
+let altura = 100;
+
+
 mais.addEventListener('click', () =>{
     
+    largura += 20;
+    altura += 20;
+
+    image.style.width = `${largura}%`;
+    image.style.height = `${altura }%`;
+})
+
+menos.addEventListener('click', () => {
+    largura -= 20;
+    altura -= 20;
+
+    image.style.width = `${largura}%`;
+    image.style.height = `${altura}%`;
 })
 
 
@@ -32,6 +50,9 @@ fechar.addEventListener('click', function(){
     resultado.innerHTML = '';
     msg.classList.remove('msgDesativo');
     zoom.classList.add('controleTamanhoOff')
+
+    image.style.width = `0px`;
+    image.style.height = `0px`;
 });
 
 
@@ -44,7 +65,10 @@ window.addEventListener('DOMContentLoaded', () =>{
             image.setAttribute('src',endereco.result)
         }
         endereco.readAsDataURL(arquivo);
-
+        image.style.width = '100%'
+        image.style.height = '100%'
+        largura = 100
+        altura = 100
         fechar.classList.remove('fecharOff');
         msg.classList.add('msgDesativo');
         zoom.classList.remove('controleTamanhoOff');
