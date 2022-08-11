@@ -88,7 +88,7 @@ p {
 }
 #fechar{
     float: right;
-    background: #df0c0cb4;
+    background: #ff0000;
     border-radius: 10px;
     cursor: pointer;
     box-sizing: border-box;
@@ -98,6 +98,7 @@ p {
 }
 #fechar:hover{
     background:#fc0000;
+    border: 2px #000 solid;
 }
 .fecharOff{
     display:none
@@ -198,6 +199,7 @@ footer p{
         width: 80%;
         margin-left: 10%;
         margin-right: 10%;
+        margin-top:10%;
     }
     .info{
         margin-top:280px;
@@ -233,6 +235,15 @@ footer p{
     }
     #fechar{
         left:89%
+    }
+    
+    .controleTamanho{
+        display: flex !important;
+        justify-content: center;
+        width: 100% !important;
+    }
+    .controleTamanho{
+        transform: scale(1.5);
     }
 }
 @media(max-width:530px) {
@@ -333,17 +344,8 @@ a:hover{
     color:rgba(0, 0, 0, 0.678);
 }
 .mais{
-    line-height:18px;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    text-align: center;
     background-color: rgb(255, 255, 255);
     border-radius:50px;
-    font-size: 23px;
-    border: 1px solid #000;
-    font-weight:900;
-
 }
 .mais:hover{
     background: rgb(40, 170, 40);
@@ -351,17 +353,8 @@ a:hover{
     cursor:pointer;
 }
 .menos{
-    line-height:12px;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    text-align: center;
     background-color: rgb(255, 255, 255);
-    border-radius:50px;
-    font-size: 25px;
-    border: 1px solid #000;
-    font-weight:900;
-    
+    border-radius:50px;    
 }
 .menos:hover{
     background: rgb(40, 170, 40);
@@ -374,7 +367,11 @@ a:hover{
  
 }
 .controleTamanhoOff{
-    display:none;
+    display:none !important;
+}
+.controleTamanho img{
+    width: 25px;
+    height: 25px;
 }
 
 /*.imageZoom{
