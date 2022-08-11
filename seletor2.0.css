@@ -240,10 +240,9 @@ footer p{
     .controleTamanho{
         display: flex !important;
         justify-content: center;
-        width: 100% !important;
-    }
-    .controleTamanho{
+        width: 80% !important;
         transform: scale(1.5);
+        padding-left: 15%;
     }
 }
 @media(max-width:530px) {
