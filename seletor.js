@@ -151,14 +151,13 @@ image.addEventListener('click', (e) =>{
 // Novamente inseri a cor da posição do mouse em uma variável
     let p = canvas.getContext('2d').getImageData(x, y, 1, 1).data
 
-
+// Aqui organizo as informações e as apresento no campo de resultados
     let rgb = p[0] + ',' + p[1] + ',' + p[2];
     let hsl = rgbParaHsl(p[0], p[1], p[2])
     let hex = rgbParaHex(p[0], p[1], p[2])
     resultado.innerHTML = 'RGB: '+ rgb +'<br>' 
     resultado.innerHTML += 'HSL: '+ hsl +'<br>' 
     resultado.innerHTML += 'Hexadecimal: ' + hex
-    
     selectCor.style.backgroundColor = hex    
     });
 });
