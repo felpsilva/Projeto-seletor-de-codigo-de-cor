@@ -5,7 +5,7 @@
 <h3>Para facilitar o entendimento, tem como função trazar um exemplo na prática.</h3>
 
 
-<p>Trata-se de um campo onde pode-se inserir uma imagem qualquer (png ou jpeg)</p>
+<p>Trata-se de um campo onde é possivel inserir uma imagem qualquer (png ou jpeg)</p>
 
 ![image](https://user-images.githubusercontent.com/93503496/178585329-8d50c6ce-eda8-4c65-88f3-1f17d298a8e6.png)
 
