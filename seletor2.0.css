@@ -5,7 +5,7 @@
 }
 
 /* Refatoração */
-.intro, .codigos-de-cor, .oque-e-rgb, .oque-e-hsl, .oque-e-hex{
+article{
   margin: 30px 20px;
 }
 
@@ -37,6 +37,7 @@ h3{
   display: flex;
   justify-content: space-around;
   margin: 20px;
+  margin-top: 0px;
 }
 
 .campo .saida .painel .painel-pre-selecao,
@@ -127,7 +128,6 @@ p {
 }
 
 .info p {
-  padding-right: 50px;
   margin: 25px 0;
 }
 
@@ -265,11 +265,24 @@ body::-webkit-scrollbar-thumb{
   .saida{
     width: 100%;
   }
+
+  h3{
+    margin: 20px 0;
+    font-size: 15px;
+  }
+
+  .campo .saida .painel {
+    margin: 20px
+  }
+
+ article {
+    margin: 30px 0px;
+  }
 }
 
 @media (max-width: 850px) {
   .logo {
-    margin-left: 100px;
+    margin-left: 50px;
   }
 
   .corpo {
@@ -279,7 +292,6 @@ body::-webkit-scrollbar-thumb{
 
   .content {
     width: 100%;
-    padding: 0 10%;
     margin: 0;
   }
 
@@ -323,8 +335,7 @@ body::-webkit-scrollbar-thumb{
 
   #resultado {
     margin: 55px auto 0;
-    width: 80%;
-    text-align: center;
+    width: 90%;
   }
 
   #fechar {
@@ -346,11 +357,7 @@ body::-webkit-scrollbar-thumb{
 
 @media (max-width: 530px) {
   p {
-    font-size: 10pt;
-  }
-
-  .intro {
-    width: 100%;
+    font-size: 16px;
   }
 
   h1 {
@@ -359,10 +366,6 @@ body::-webkit-scrollbar-thumb{
 
   h2 {
     font-size: 1.2em;
-  }
-
-  .logo {
-    margin-left: 0;
   }
 
   #previewCor,
