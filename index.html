@@ -5,19 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO -->
-    <meta name="description" content="Descubra facilmente o código de cor RGB, HEX ou HSL de qualquer ponto de uma imagem com nossa ferramenta gratuita.">
+    <meta name="description"
+        content="Descubra facilmente o código de cor RGB, HEX ou HSL de qualquer ponto de uma imagem com nossa ferramenta gratuita.">
     <meta name="keywords" content="color picker, seletor de cor, RGB, HEX, HSL, código de cor de imagem">
     <meta name="author" content="Felipe Silva">
     <!-- Open Graph (para redes sociais) -->
     <meta property="og:title" content="Que cor é esta?">
-    <meta property="og:description"content="Ferramenta online para identificar a cor de qualquer ponto de uma imagem em RGB, HSL e HEX.">
+    <meta property="og:description"
+        content="Ferramenta online para identificar a cor de qualquer ponto de uma imagem em RGB, HSL e HEX.">
     <meta property="og:image" content="https://felpsilva.github.io/Projeto-seletor-de-codigo-de-cor/img01/logo.PNG">
     <meta property="og:type" content="website">
     <link rel="icon" href="./img01/conta_gotas.png">
     <link rel="stylesheet" href="seletor2.0.css">
     <link rel="stylesheet" href="scroll_bar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Que cor é esta? - Descubra o código de cor de qualquer imagem</title>
 </head>
+
 <body>
     <main>
         <header class="topo">
@@ -29,19 +36,27 @@
             <article class="intro">
                 <h1>Seletor de Cores Online</h1>
                 <h2>Conta-Gotas Grátis e Preciso para Capturar Qualquer Cor</h2>
-                <p>Com essa ferramenta online, você pode obter o código de cor <strong>RGB, HSL ou HEX</strong> de qualquer ponto de uma imagem. Clique abaixo para inserir uma imagem e depois selecione qualquer ponto para obter a cor exata.</p>
+                <p>Com essa ferramenta online, você pode obter o código de cor <strong>RGB, HSL ou HEX</strong> de
+                    qualquer ponto de uma imagem. Clique abaixo para inserir uma imagem e depois selecione qualquer
+                    ponto para obter a cor exata.</p>
             </article>
             <section class="campo" aria-label="Área de seleção de imagem e exibição de cor">
-                <div class="content">
-                    <img src="./img01/fechar.png" alt="Ícone para fechar imagem" id="fechar">
-                    <div class="entrada">
-                        <div class="preview" id="preview">
-                            <p class="msg">Clique aqui para inserir a imagem</p>
-                            <img id="image" draggable="false">
-                            <canvas id="cs" style="display:none;"></canvas>
-                            <input type="file" name="arquivo1" id="arquivo" accept="image/*"
-                                aria-label="Envie uma imagem para detectar cores">
+                <div class="painel-view">
+                    <div class="content">
+                        <img src="./img01/fechar.png" alt="Ícone para fechar imagem" id="fechar">
+                        <div class="entrada">
+                            <div class="preview" id="preview">
+                                <p class="msg">Clique aqui para inserir a imagem</p>
+                                <img id="image" draggable="false">
+                                <canvas id="cs" style="display:none;"></canvas>
+                                <input type="file" name="arquivo1" id="arquivo" accept="image/*"
+                                    aria-label="Envie uma imagem para detectar cores">
+                            </div>
                         </div>
+                    </div>
+                    <div class="controleTamanho">
+                        <img src="./img01/mais.png" alt="Aumentar zoom" class="mais">
+                        <img src="./img01/menos.png" alt="Diminuir zoom" class="menos">
                     </div>
                 </div>
                 <div class="saida">
@@ -59,65 +74,103 @@
                         <div name="resultado" id="resultado" aria-live="polite"></div>
                     </div>
                 </div>
-                <div class="controleTamanho">
-                    <img src="./img01/mais.png" alt="Aumentar zoom" class="mais">
-                    <img src="./img01/menos.png" alt="Diminuir zoom" class="menos">
-                </div>
             </section>
             <section class="info" aria-label="Informações sobre códigos de cor">
                 <article class="codigos-de-cor">
-                    <h2 id="codigo-cor">Código de cor</h2>
-                    <p>Códigos de cor são representações numéricas usadas para descrever cores digitalmente. Um exemplo
-                        comum é o modelo <strong>RGB</strong> — Vermelho, Verde e Azul.</p>
-                </article>
-                <article class="oque-e-rgb">
-                    <h2>O que é RGB?</h2>
-                    <p><strong>RGB</strong> é o sistema de cores aditivas baseado nas cores luz: Red (vermelho), Green
-                        (verde) e Blue (azul).</p>
-                    <p>É utilizado em telas como monitores, TVs e câmeras digitais. As cores são criadas combinando
-                        essas três cores em intensidades de 0 a 255.</p>
-                    <p>Exemplo: <code>RGB(255, 0, 0)</code> é vermelho puro; <code>RGB(0, 0, 0)</code> é preto.</p>
-                    <figure>
-                        <img src="./img01/Photoshop-exemplo-RGB.png" alt="Exemplo de código RGB no Photoshop"
-                            class="ex_rgb">
-                    </figure>
-                    <figure>
-                        <img src="./img01/Photoshop-exemplo-RGB2.png" alt="Outro exemplo de RGB" class="ex_rgb2">
-                    </figure>
+                    <h2 id="codigo-cor">Código de cor: O que é e para que serve</h2>
+                    <p>
+                        <strong>Códigos de cor</strong> são representações numéricas que descrevem cores no ambiente
+                        digital.
+                        Eles permitem que computadores, celulares, softwares de edição e navegadores exibam exatamente o
+                        mesmo tom em qualquer tela.
+                        Existem diferentes <em>modelos de cores</em>, sendo os mais comuns o <strong>RGB</strong>,
+                        <strong>HSL</strong> e <strong>HEX</strong>.
+                        Cada um possui um formato específico para representar e manipular cores.
+                    </p>
                 </article>
 
+                <article class="oque-e-rgb">
+                    <h2>O que é RGB?</h2>
+                    <p>
+                        O <strong>RGB</strong> é um sistema de cores aditivas que combina três cores-luz:
+                        <em>Red</em> (vermelho), <em>Green</em> (verde) e <em>Blue</em> (azul).
+                        Ele é amplamente utilizado em telas como monitores, televisores, câmeras digitais e smartphones.
+                    </p>
+                    <p>
+                        Cada cor é definida por três valores numéricos que variam de <code>0</code> a <code>255</code>,
+                        representando a intensidade de cada componente. Ao misturar essas intensidades, é possível
+                        formar
+                        milhões de cores diferentes.
+                    </p>
+                    <p>
+                        Exemplos:
+                        <code>RGB(255, 0, 0)</code> representa o vermelho puro,
+                        <code>RGB(0, 0, 0)</code> representa o preto e
+                        <code>RGB(255, 255, 255)</code> representa o branco.
+                    </p>
+                </article>
                 <article class="oque-e-hsl">
                     <h2>O que é HSL?</h2>
-                    <p><strong>HSL</strong> significa Hue (tom), Saturation (saturação) e Lightness (luminosidade).</p>
-                    <p>O tom é medido em graus, a saturação e a luminosidade em porcentagens. É mais intuitivo que o RGB
-                        para ajustes visuais.</p>
-                    <figure>
-                        <img src="./img01/ex_hsl.jpg" alt="Exemplo do modelo de cor HSL" class="ex_hsl">
-                    </figure>
+                    <p>
+                        O <strong>HSL</strong> significa <em>Hue</em> (tom), <em>Saturation</em> (saturação) e
+                        <em>Lightness</em> (luminosidade).
+                        Ele é uma forma mais intuitiva de representar cores quando se deseja fazer ajustes visuais,
+                        especialmente no design.
+                    </p>
+                    <p>
+                        No modelo HSL:
+                    <ul>
+                        <li><strong>Hue (Tom):</strong> medido em graus (0° a 360°) no círculo cromático, define a cor
+                            base.
+                        </li>
+                        <li><strong>Saturation (Saturação):</strong> medida em porcentagem, indica a intensidade da cor
+                            (0%
+                            = cinza, 100% = cor viva).</li>
+                        <li><strong>Lightness (Luminosidade):</strong> também medida em porcentagem, determina o quão
+                            clara
+                            ou escura é a cor (0% = preto, 50% = cor normal, 100% = branco).</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Exemplo: <code>HSL(0, 100%, 50%)</code> é vermelho puro.
+                    </p>
                 </article>
 
                 <article class="oque-e-hex">
                     <h2>O que é HEX?</h2>
-                    <p><strong>HEX</strong> é uma forma de representar cores com seis caracteres precedidos de “#”.</p>
-                    <p>Os dois primeiros representam o vermelho, os dois seguintes o verde e os dois últimos o azul.
-                        Exemplo: <code>#FFFFFF</code> é branco puro.</p>
-                    <figure>
-                        <img src="./img01/Photoshop-exemplo-Hex.png" alt="Exemplo de cor hexadecimal no Photoshop"
-                            class="ex_hex">
-                    </figure>
-                    <figure>
-                        <img src="./img01/Photoshop-exemplo-Hex2.png" alt="Outro exemplo de código Hex" class="ex_hex2">
-                    </figure>
+                    <p>
+                        O <strong>HEX</strong> é um formato muito usado em desenvolvimento web para representar cores de
+                        forma compacta.
+                        Ele utiliza seis dígitos hexadecimais (0–9 e A–F) precedidos pelo símbolo <code>#</code>.
+                    </p>
+                    <p>
+                        A estrutura é dividida em três pares:
+                    <ul>
+                        <li>Os dois primeiros dígitos representam o vermelho.</li>
+                        <li>Os dois seguintes representam o verde.</li>
+                        <li>Os dois últimos representam o azul.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Exemplo: <code>#FFFFFF</code> é branco puro, <code>#000000</code> é preto e <code>#FF0000</code>
+                        é
+                        vermelho puro.
+                    </p>
                 </article>
             </section>
         </section>
-
-        <footer>
-            <p class="p-footer">
-                &copy; 2022 - <a href="https://github.com/felpsilva">Felipe Silva</a> - Todos os direitos reservados -
-                <a href="https://www.linkedin.com/in/felipe-pereira-20b70a205/"><img class="linkedin"
-                        src="img01/linkedin.png" alt="Linkedin de Felipe Silva"></a>
-            </p>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; 2025 <strong>Felipe Silva</strong>. Todos os direitos reservados.</p>
+                <p>
+                    <a href="https://github.com/felpsilva" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a> | 
+                    <a href="https://www.linkedin.com/in/felipe-pereira-20b70a205/" target="_blank" rel="noopener noreferrer">
+                        <img src="img01/linkedin.png" alt="Perfil no LinkedIn de Felipe Silva" class="linkedin-icon">
+                    </a>
+                </p>
+            </div>
         </footer>
     </main>
     <script src="seletor.js"></script>
