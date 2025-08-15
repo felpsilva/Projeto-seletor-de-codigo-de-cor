@@ -62,7 +62,7 @@ header div{
 
 .logo {
   height: 45px;
-  margin: 7px 20px;
+  margin: 7px 50px;
 }
 
 main {
@@ -247,11 +247,15 @@ body::-webkit-scrollbar-thumb{
 }
 
 /* Responsividade */
-@media (max-width: 950px) {
+@media (max-width: 996px) {
   .corpo {
     width: 100%;
     border: 0;
     padding: 0 30px;
+  }
+
+  h1{
+    text-align: left;
   }
 
   .campo{
