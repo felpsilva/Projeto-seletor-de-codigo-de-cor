@@ -147,3 +147,36 @@ image.addEventListener('click', e => {
     const y = e.offsetY || e.layerY;
     capturarCor(x, y);
 });
+
+// Modo escuro
+const troca = document.getElementById("modo-escuro");
+troca.addEventListener("change", function () {
+
+    let logo = document.querySelector(".logo").src = "./img01/logo.png";
+    let body = document.querySelector("body");
+    let header = document.querySelector("header");
+    let main = document.querySelector("main");
+    let topo = document.getElementById("topo");
+    let corpo = document.getElementById("corpo");
+    let p = document.querySelectorAll("p");
+    let previewCor = document.getElementById("previewCor");
+    let selectCor = document.getElementById("selectCor");
+
+    if (this.checked) {
+        logo.src = "./img01/logo.png";
+        main.classList.remove("main-dark");
+        topo.classList.remove("topo-dark");
+        corpo.classList.remove("corpo-dark");
+        p.forEach(el => el.classList.remove("p-dark"));
+        previewCor.classList.remove("preview-dark");
+        selectCor.classList.remove("preview-dark");
+    } else {
+        logo.src = "./img01/logo-dark.png";
+        main.classList.add("main-dark");
+        topo.classList.add("topo-dark");
+        corpo.classList.add("corpo-dark");
+        p.forEach(el => el.classList.add("p-dark"));
+        previewCor.classList.add("preview-dark");
+        selectCor.classList.add("preview-dark");
+    }
+});

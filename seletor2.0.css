@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Refatoração */
 article{
   margin: 30px 20px;
 }
@@ -55,32 +54,123 @@ h3{
   color: #fff;
 }
 
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.modo-escuro {
+  margin-right: 5%;
+}
+
 header div{
   max-width: 1120px;
-  margin: 0 auto;
 }
 
 .logo {
   height: 45px;
-  margin: 7px 50px;
+  transition: all 0.5s ease-in-out;
 }
 
 main {
   width: 100%;
   height: 100%;
+  transition: all 0.5s ease-in-out;
 }
 
 .topo {
   background-color: black;
   height: 60px;
   width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+/* Esconde o input original */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Trilha do switch */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #aaa;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+/* Botão circular */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Quando ativado */
+input:checked + .slider {
+  background-color: #fdfdfd;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+  background-color: #050505;
+}
+
+.main-dark {
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: all 0.5s ease-in-out;
+}
+
+.topo-dark {
+  background-color:  #ffffff73;
+  transition: all 0.5s ease-in-out;
+}
+
+.corpo-dark {
+  background-color: #121212 !important;
+  color: #ffffff;
+  transition: all 0.5s ease-in-out;
+}
+
+.p-dark {
+  color: #ffffff;
+  transition: all 0.5s ease-in-out;
+}
+
+.preview-dark {
+  border-color: #ffffff !important;
+  transition: all 0.5s ease-in-out;
 }
 
 .corpo {
   margin: 0 auto;
   position: relative;
   width: 1120px;
-  background-color: rgba(255, 255, 255, 0.567);
+  background-color: #ffffff91;
 }
 
 input[type="file"] {
