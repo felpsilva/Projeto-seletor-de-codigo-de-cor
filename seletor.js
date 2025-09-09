@@ -163,7 +163,7 @@ troca.addEventListener("change", function () {
     let selectCor = document.getElementById("selectCor");
 
     if (this.checked) {
-        logo.src = "./img01/logo.png";
+        logo.src = "./img01/logo.PNG";
         main.classList.remove("main-dark");
         topo.classList.remove("topo-dark");
         corpo.classList.remove("corpo-dark");
@@ -171,7 +171,7 @@ troca.addEventListener("change", function () {
         previewCor.classList.remove("preview-dark");
         selectCor.classList.remove("preview-dark");
     } else {
-        logo.src = "./img01/logo-dark.png";
+        logo.src = "./img01/logo-black.png";
         main.classList.add("main-dark");
         topo.classList.add("topo-dark");
         corpo.classList.add("corpo-dark");
