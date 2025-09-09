@@ -1,0 +1,14 @@
+Array
+(
+    [Host] => seletordecoronline.com.br
+    [User-Agent] => GitHub-Hookshot/V2-466cb3f
+    [Content-Length] => 10720
+    [Accept] => */*
+    [Content-Type] => application/x-www-form-urlencoded
+    [X-GitHub-Delivery] => 05d2e8ae-7bc8-11f0-9ba9-d914852595d4
+    [X-GitHub-Event] => ping
+    [X-GitHub-Hook-ID] => 564476751
+    [X-GitHub-Hook-Installation-Target-ID] => 521029882
+    [X-GitHub-Hook-Installation-Target-Type] => repository
+    [Connection] => close
+)
