@@ -152,7 +152,7 @@ image.addEventListener('click', e => {
 const troca = document.getElementById("modo-escuro");
 troca.addEventListener("change", function () {
 
-    let logo = document.querySelector(".logo").src = "./img01/logo.png";
+    let logo = document.querySelector(".logo");
     let body = document.querySelector("body");
     let header = document.querySelector("header");
     let main = document.querySelector("main");
