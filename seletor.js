@@ -170,6 +170,7 @@ troca.addEventListener("change", function () {
         p.forEach(el => el.classList.remove("p-dark"));
         previewCor.classList.remove("preview-dark");
         selectCor.classList.remove("preview-dark");
+        resultado.classList.remove("resultado-dark");
     } else {
         logo.src = "./img01/logo-black.png";
         main.classList.add("main-dark");
@@ -178,5 +179,6 @@ troca.addEventListener("change", function () {
         p.forEach(el => el.classList.add("p-dark"));
         previewCor.classList.add("preview-dark");
         selectCor.classList.add("preview-dark");
+        resultado.classList.add("resultado-dark");
     }
 });
