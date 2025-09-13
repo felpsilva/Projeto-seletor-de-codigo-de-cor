@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: "Baixar o código"
-      - uses: acitions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: "copiar arquivo para VPS"
         uses: appleboy/scp-action@v0.1.7
