@@ -19,4 +19,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 65002
           source: "."
-          target: "/public_html"
+          target: "/home/u720355140/domains/seletordecoronline.com.br/public_html"
