@@ -348,12 +348,26 @@ body::-webkit-scrollbar-thumb{
 
 .variacao-de-cores{
   display: flex;
-  padding: 0 50px;
+  margin: 0 50px;
+  box-shadow: 0px 5px 15px -3px;
+  border-radius: 8px;
 }
 .variacao-de-cor{
   width: 10%;
   height: 300px;
 }
+
+.variacao-de-cores .variacao-de-cor:first-child{
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.variacao-de-cores .variacao-de-cor:last-child{
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+
 /* Responsividade */
 @media (max-width: 996px) {
   .corpo {

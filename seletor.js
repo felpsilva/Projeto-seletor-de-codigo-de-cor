@@ -164,6 +164,8 @@ preview.onclick = () => {
     if (!image.src) imageFile.click();
 };
 
+aplicarVariacaoDeCor()
+
 mais.addEventListener('click', () => aplicarZoom(20));
 menos.addEventListener('click', () => aplicarZoom(-20));
 fechar.addEventListener('click', resetarImagem);
