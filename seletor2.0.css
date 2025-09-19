@@ -341,6 +341,19 @@ body::-webkit-scrollbar-thumb{
     border-radius: 3px;
 }
 
+/* Variações de Cores */
+.variacoes{
+    width: 100%;
+}
+
+.variacao-de-cores{
+  display: flex;
+  padding: 0 50px;
+}
+.variacao-de-cor{
+  width: 10%;
+  height: 300px;
+}
 /* Responsividade */
 @media (max-width: 996px) {
   .corpo {

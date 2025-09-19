@@ -11,6 +11,7 @@ const selectCor   = document.querySelector('#selectCor');
 const canvas      = document.querySelector('#cs');
 const resultado   = document.querySelector('#resultado');
 const previewCor  = document.querySelector('#previewCor');
+const variacoesDeCores   = document.querySelector('.variacao-de-cores');
 
 let largura = 100;
 let altura  = 100;
@@ -73,6 +74,7 @@ function capturarCor(x, y) {
         resultado.innerHTML += `Hexadecimal: ${hex}`;
 
         selectCor.style.backgroundColor = hex;
+        return selectCor.setAttribute("data-cor-hex", hex);
     });
 }
 
@@ -117,6 +119,46 @@ function rgbParaHex(r, g, b) {
     return `#${conversorHex(r)}${conversorHex(g)}${conversorHex(b)}`;
 }
 
+function getVariacaoDeCor(cor, variacao) {
+    // Remove o "#" se existir
+    if(variacao === 0) return cor;
+
+    cor = cor.replace(/^#/, "");
+
+    // Expande shorthand tipo #abc → #aabbcc
+    if (cor.length === 3) {
+        cor = cor.split("").map(c => c + c).join("");
+    }
+
+    // Converte hex para RGB
+    let r = parseInt(cor.substring(0, 2), 16);
+    let g = parseInt(cor.substring(2, 4), 16);
+    let b = parseInt(cor.substring(4, 6), 16);
+
+    // Garante que a variação fique entre 0 e 100
+    variacao = Math.min(100, Math.max(0, variacao));
+
+    // Calcula fator (0 = sem alteração, 100 = preto total)
+    let fator = (100 - variacao) / 100;
+
+    // Aplica fator
+    r = Math.round(r * fator);
+    g = Math.round(g * fator);
+    b = Math.round(b * fator);
+    return rgbParaHex(r, g, b);
+}
+
+function aplicarVariacaoDeCor() {
+  const corBase = selectCor.getAttribute("data-cor-hex");
+  let variacao = 0;
+  let variacoes = document.querySelectorAll('.variacao-de-cor');
+  variacoes.forEach((variacaoCor) => {
+    let cor = getVariacaoDeCor(corBase, variacao);
+    variacaoCor.style.backgroundColor = cor;
+    variacao += 10;
+  });
+}
+
 // Eventos
 preview.onclick = () => {
     if (!image.src) imageFile.click();
@@ -146,6 +188,7 @@ image.addEventListener('click', e => {
     const x = e.offsetX || e.layerX;
     const y = e.offsetY || e.layerY;
     capturarCor(x, y);
+    aplicarVariacaoDeCor();
 });
 
 // Modo escuro
