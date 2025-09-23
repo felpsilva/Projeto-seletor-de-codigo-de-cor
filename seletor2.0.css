@@ -375,7 +375,6 @@ body::-webkit-scrollbar-thumb{
 }
 
 .variacao-de-cor {
-  position: relative;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   display: flex;
@@ -386,7 +385,6 @@ body::-webkit-scrollbar-thumb{
     width: 100%;
     display: block;
     text-align: center;
-    position: absolute;
     color: #ffffff;
     font-family: monospace;
     margin: 5% 0;
@@ -415,6 +413,7 @@ body::-webkit-scrollbar-thumb{
 
   .campo{
     flex-direction: column;
+    margin: 0px;
   }
 
   .content{
@@ -434,13 +433,18 @@ body::-webkit-scrollbar-thumb{
     margin: 20px
   }
 
- article {
+  article {
+    margin: 30px 0px;
+  }
+
+  .variacoes {
     margin: 30px 0px;
   }
 
   .variacao-de-cores {
     flex-direction: column;
     border-radius: 0px;
+    padding-right: 0px;
   }
 
   .variacao-de-cor {
@@ -461,6 +465,11 @@ body::-webkit-scrollbar-thumb{
   .variacao-de-cor .cor-hex {
     text-align: start;
     margin: 10px 5%;
+  }
+
+  #resultado {
+    margin: 55px 0;
+    width: 100%;
   }
 }
 
@@ -515,11 +524,6 @@ body::-webkit-scrollbar-thumb{
   #selectCor {
     float: right;
     margin: 0 8% 0 0;
-  }
-
-  #resultado {
-    margin: 55px auto 0;
-    width: 90%;
   }
 
   #fechar {
