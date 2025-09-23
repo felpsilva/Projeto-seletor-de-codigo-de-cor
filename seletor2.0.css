@@ -391,7 +391,7 @@ body::-webkit-scrollbar-thumb{
 }
 
 .variacao-de-cor:hover {
-    color: #ffffff;
+  font-size: 16px;
 }
 
 .variacao-de-cores-dark {

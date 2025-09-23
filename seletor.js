@@ -152,7 +152,7 @@ function getVariacaoDeCor(cor, variacao) {
 function aplicarVariacaoDeCor() {
   const corBase = selectCor.getAttribute("data-cor-hex");
   let variacao = 0;
-  variacoes.forEach((variacaoCor) => {
+  Array.from(variacoes).forEach((variacaoCor) => {
     let cor = getVariacaoDeCor(corBase, variacao);
     variacaoCor.style.backgroundColor = cor;
     variacaoCor.querySelector('.cor-hex').innerText = cor;
@@ -220,7 +220,7 @@ function copiarParaAreaDeTransferencia(texto) {
 }
 
 // Eventos
-variacoes.forEach(variacaoCor => {
+Array.from(variacoes).forEach(variacaoCor => {
     variacaoCor.addEventListener('click', () => {
         const corHex = variacaoCor.querySelector('.cor-hex').innerText;
         copiarParaAreaDeTransferencia(corHex);
