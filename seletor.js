@@ -11,7 +11,8 @@ const selectCor   = document.querySelector('#selectCor');
 const canvas      = document.querySelector('#cs');
 const resultado   = document.querySelector('#resultado');
 const previewCor  = document.querySelector('#previewCor');
-const variacoesDeCores   = document.querySelector('.variacao-de-cores');
+const variacoesDeCores  = document.querySelector('.variacao-de-cores');
+let variacoes = document.querySelectorAll('.variacao-de-cor');
 
 let largura = 100;
 let altura  = 100;
@@ -151,15 +152,81 @@ function getVariacaoDeCor(cor, variacao) {
 function aplicarVariacaoDeCor() {
   const corBase = selectCor.getAttribute("data-cor-hex");
   let variacao = 0;
-  let variacoes = document.querySelectorAll('.variacao-de-cor');
   variacoes.forEach((variacaoCor) => {
     let cor = getVariacaoDeCor(corBase, variacao);
     variacaoCor.style.backgroundColor = cor;
+    variacaoCor.querySelector('.cor-hex').innerText = cor;
+    variacaoCor.querySelector('.cor-hex').style.color = contrasteCor(cor);
     variacao += 10;
   });
 }
 
+function contrasteCor(cor) {
+    cor = cor.replace(/^#/, "");
+    if (cor.length === 3) {
+        cor = cor.split("").map(c => c + c).join("");
+    }
+    const r = parseInt(cor.substring(0, 2), 16);
+    const g = parseInt(cor.substring(2, 4), 16);
+    const b = parseInt(cor.substring(4, 6), 16);
+    const luminancia = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminancia > 0.5 ? '#000000' : '#FFFFFF';
+}
+
+function modoEscuro() {
+    let logo = document.querySelector(".logo");
+    let header = document.querySelector("header");
+    let main = document.querySelector("main");
+    let topo = document.getElementById("topo");
+    let corpo = document.getElementById("corpo");
+    let p = document.querySelectorAll("p");
+    let previewCor = document.getElementById("previewCor");
+    let selectCor = document.getElementById("selectCor");
+    let variacoesDeCores = document.querySelector(".variacao-de-cores");
+    let footer = document.querySelector("footer");
+
+    if (troca.checked) {
+        logo.src = "./img01/logo.PNG";
+        main.classList.remove("main-dark");
+        topo.classList.remove("topo-dark");
+        corpo.classList.remove("corpo-dark");
+        p.forEach(el => el.classList.remove("p-dark"));
+        previewCor.classList.remove("preview-dark");
+        selectCor.classList.remove("preview-dark");
+        resultado.classList.remove("resultado-dark");
+        variacoesDeCores.classList.remove("variacao-de-cores-dark");
+        footer.classList.remove("footer-dark");
+    } else {
+        logo.src = "./img01/logo-black.png";
+        main.classList.add("main-dark");
+        topo.classList.add("topo-dark");
+        corpo.classList.add("corpo-dark");
+        p.forEach(el => el.classList.add("p-dark"));
+        previewCor.classList.add("preview-dark");
+        selectCor.classList.add("preview-dark");
+        resultado.classList.add("resultado-dark");
+        variacoesDeCores.classList.add("variacao-de-cores-dark");
+        footer.classList.add("footer-dark");
+    }
+}
+
+function copiarParaAreaDeTransferencia(texto) {
+    navigator.clipboard.writeText(texto).then(() => {
+        alert(`Cor ${texto} copiada para a área de transferência!`);
+        }).catch(err => {
+        console.error('Erro ao copiar para a área de transferência: ', err);
+        alert('Erro ao copiar para a área de transferência.');
+    });
+}
+
 // Eventos
+variacoes.forEach(variacaoCor => {
+    variacaoCor.addEventListener('click', () => {
+        const corHex = variacaoCor.querySelector('.cor-hex').innerText;
+        copiarParaAreaDeTransferencia(corHex);
+    });
+});
+
 preview.onclick = () => {
     if (!image.src) imageFile.click();
 };
@@ -194,36 +261,7 @@ image.addEventListener('click', e => {
 });
 
 // Modo escuro
-const troca = document.getElementById("modo-escuro");
+let troca = document.getElementById("modo-escuro");
 troca.addEventListener("change", function () {
-
-    let logo = document.querySelector(".logo");
-    let body = document.querySelector("body");
-    let header = document.querySelector("header");
-    let main = document.querySelector("main");
-    let topo = document.getElementById("topo");
-    let corpo = document.getElementById("corpo");
-    let p = document.querySelectorAll("p");
-    let previewCor = document.getElementById("previewCor");
-    let selectCor = document.getElementById("selectCor");
-
-    if (this.checked) {
-        logo.src = "./img01/logo.PNG";
-        main.classList.remove("main-dark");
-        topo.classList.remove("topo-dark");
-        corpo.classList.remove("corpo-dark");
-        p.forEach(el => el.classList.remove("p-dark"));
-        previewCor.classList.remove("preview-dark");
-        selectCor.classList.remove("preview-dark");
-        resultado.classList.remove("resultado-dark");
-    } else {
-        logo.src = "./img01/logo-black.png";
-        main.classList.add("main-dark");
-        topo.classList.add("topo-dark");
-        corpo.classList.add("corpo-dark");
-        p.forEach(el => el.classList.add("p-dark"));
-        previewCor.classList.add("preview-dark");
-        selectCor.classList.add("preview-dark");
-        resultado.classList.add("resultado-dark");
-    }
+    modoEscuro();
 });
