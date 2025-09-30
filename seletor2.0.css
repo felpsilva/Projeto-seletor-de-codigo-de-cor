@@ -25,7 +25,7 @@ article{
 }
 
 h3{
-  margin: 20px 0;
+  margin: 25px 0;
   font-size: 18px;
   font-family: monospace;
 }
@@ -353,35 +353,41 @@ body::-webkit-scrollbar-thumb{
   margin: 30px 20px;
 }
 
-.variacao-de-cores{
+.variacao-de-cores,
+.variacao-de-cores-claras{
   display: flex;
   border-radius: 8px;
   padding-right: 70px;
   margin-top: 25px;
 }
-.variacao-de-cor{
+.variacao-de-cor,
+.variacao-de-cor-clara {
   width: 10%;
   height: 125px;
 }
 
-.variacao-de-cores .variacao-de-cor:first-child{
+.variacao-de-cores .variacao-de-cor:first-child,
+.variacao-de-cores-claras .variacao-de-cor-clara:first-child{
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
 }
 
-.variacao-de-cores .variacao-de-cor:last-child{
+.variacao-de-cores .variacao-de-cor:last-child,
+.variacao-de-cores-claras .variacao-de-cor-clara:last-child{
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-.variacao-de-cor {
+.variacao-de-cor,
+.variacao-de-cor-clara {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   display: flex;
   align-items: flex-end;
 }
 
-.variacao-de-cor .cor-hex {
+.variacao-de-cor .cor-hex,
+.variacao-de-cor-clara .cor-hex {
     width: 100%;
     display: block;
     text-align: center;
@@ -390,7 +396,8 @@ body::-webkit-scrollbar-thumb{
     margin: 5% 0;
 }
 
-.variacao-de-cor:hover {
+.variacao-de-cor:hover,
+.variacao-de-cor-clara:hover {
   font-size: 16px;
 }
 
@@ -441,28 +448,33 @@ body::-webkit-scrollbar-thumb{
     margin: 30px 0px;
   }
 
-  .variacao-de-cores {
+  .variacao-de-cores,
+  .variacao-de-cores-claras {
     flex-direction: column;
     border-radius: 0px;
     padding-right: 0px;
   }
 
-  .variacao-de-cor {
+  .variacao-de-cor,
+  .variacao-de-cor-clara {
     width: 100%;
     height: 30px;
   }
 
-  .variacao-de-cores .variacao-de-cor:last-child {
+  .variacao-de-cores .variacao-de-cor:last-child,
+  .variacao-de-cores-claras .variacao-de-cor-clara:last-child {
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
   }
 
-  .variacao-de-cores .variacao-de-cor:first-child {
+  .variacao-de-cores .variacao-de-cor:first-child,
+  .variacao-de-cores-claras .variacao-de-cor-clara:first-child {
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
   }
 
-  .variacao-de-cor .cor-hex {
+  .variacao-de-cor .cor-hex,
+  .variacao-de-cor-clara .cor-hex {
     text-align: start;
     margin: 10px 5%;
   }

@@ -13,6 +13,7 @@ const resultado   = document.querySelector('#resultado');
 const previewCor  = document.querySelector('#previewCor');
 const variacoesDeCores  = document.querySelector('.variacao-de-cores');
 let variacoes = document.querySelectorAll('.variacao-de-cor');
+let variacoesCoresClaras = document.querySelectorAll('.variacao-de-cor-clara');
 
 let largura = 100;
 let altura  = 100;
@@ -120,8 +121,7 @@ function rgbParaHex(r, g, b) {
     return `#${conversorHex(r)}${conversorHex(g)}${conversorHex(b)}`;
 }
 
-function getVariacaoDeCor(cor, variacao) {
-    // Remove o "#" se existir
+function getVariacaoDeCor(cor, variacao, ton) {
     if(variacao === 0) return cor;
 
     cor = cor.replace(/^#/, "");
@@ -139,26 +139,44 @@ function getVariacaoDeCor(cor, variacao) {
     // Garante que a variação fique entre 0 e 100
     variacao = Math.min(100, Math.max(0, variacao));
 
-    // Calcula fator (0 = sem alteração, 100 = preto total)
-    let fator = (100 - variacao) / 100;
-
     // Aplica fator
-    r = Math.round(r * fator);
-    g = Math.round(g * fator);
-    b = Math.round(b * fator);
-    return rgbParaHex(r, g, b);
+    if (ton === "escuro"){
+        let fator = (100 - variacao) / 100;
+        r = Math.round(r * fator);
+        g = Math.round(g * fator);
+        b = Math.round(b * fator);
+        return rgbParaHex(r, g, b);
+    }
+
+    if (ton === "claro") {
+        let fator = variacao / 100;
+        r = Math.round(r + (255 - r) * fator);
+        g = Math.round(g + (255 - g) * fator);
+        b = Math.round(b + (255 - b) * fator);
+        return rgbParaHex(r, g, b);
+    }
 }
 
 function aplicarVariacaoDeCor() {
   const corBase = selectCor.getAttribute("data-cor-hex");
-  let variacao = 0;
+  let variacaoEscura = 0;
+  let variacaoClara = 10
   Array.from(variacoes).forEach((variacaoCor) => {
-    let cor = getVariacaoDeCor(corBase, variacao);
-    variacaoCor.style.backgroundColor = cor;
-    variacaoCor.querySelector('.cor-hex').innerText = cor;
-    variacaoCor.querySelector('.cor-hex').style.color = contrasteCor(cor);
-    variacao += 10;
+    let tonsEscuros = getVariacaoDeCor(corBase, variacaoEscura, "escuro");
+    variacaoCor.style.backgroundColor = tonsEscuros;
+    variacaoCor.querySelector('.variacao-de-cor .cor-hex').innerText = tonsEscuros;
+    variacaoCor.querySelector('.variacao-de-cor .cor-hex').style.color = contrasteCor(tonsEscuros);
+    variacaoEscura += 10;
   });
+
+  Array.from(variacoesCoresClaras).forEach((variacaoCorClara) => {
+    let tonsClaros = getVariacaoDeCor(corBase, variacaoClara, "claro");
+    console.log(corBase);
+    variacaoCorClara.style.backgroundColor = tonsClaros;
+    variacaoCorClara.querySelector('.variacao-de-cor-clara .cor-hex').innerText = tonsClaros;
+    variacaoCorClara.querySelector('.variacao-de-cor-clara .cor-hex').style.color = contrasteCor(tonsClaros);
+    variacaoClara += 10;
+  })
 }
 
 function contrasteCor(cor) {
@@ -220,12 +238,19 @@ function copiarParaAreaDeTransferencia(texto) {
 }
 
 // Eventos
-Array.from(variacoes).forEach(variacaoCor => {
+Array.from(variacoes).forEach((variacaoCor) => {
     variacaoCor.addEventListener('click', () => {
         const corHex = variacaoCor.querySelector('.cor-hex').innerText;
         copiarParaAreaDeTransferencia(corHex);
     });
 });
+
+Array.from(variacoesCoresClaras).forEach((variacaoCorClara) => {
+    variacaoCorClara.addEventListener('click', () => {
+        const corHex = variacaoCorClara.querySelector('.cor-hex').innerText;
+        copiarParaAreaDeTransferencia(corHex);
+    })
+})
 
 preview.onclick = () => {
     if (!image.src) imageFile.click();
