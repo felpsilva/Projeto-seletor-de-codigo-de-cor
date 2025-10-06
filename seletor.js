@@ -7,14 +7,14 @@ const msg         = document.querySelector('.msg');
 const zoom        = document.querySelector('.controleTamanho');
 const mais        = document.querySelector('.mais');
 const menos       = document.querySelector('.menos');
-const selectCor   = document.querySelector('#selectCor');
 const canvas      = document.querySelector('#cs');
 const resultado   = document.querySelector('#resultado');
 const previewCor  = document.querySelector('#previewCor');
 const variacoesDeCores  = document.querySelector('.variacao-de-cores');
+let selectCor     = document.querySelector('#selectCor');
 let variacoes = document.querySelectorAll('.variacao-de-cor');
 let variacoesCoresClaras = document.querySelectorAll('.variacao-de-cor-clara');
-
+let tipoHarmonia = document.getElementById("tipo-harmonia");
 let largura = 100;
 let altura  = 100;
 
@@ -158,11 +158,12 @@ function getVariacaoDeCor(cor, variacao, ton) {
 }
 
 function aplicarVariacaoDeCor() {
-  const corBase = selectCor.getAttribute("data-cor-hex");
+  let corBase = selectCor.getAttribute("data-cor-hex")
   let variacaoEscura = 0;
-  let variacaoClara = 10
+  let variacaoClara = 0
   Array.from(variacoes).forEach((variacaoCor) => {
     let tonsEscuros = getVariacaoDeCor(corBase, variacaoEscura, "escuro");
+    console.log("tons escuros" + tonsEscuros);
     variacaoCor.style.backgroundColor = tonsEscuros;
     variacaoCor.querySelector('.variacao-de-cor .cor-hex').innerText = tonsEscuros;
     variacaoCor.querySelector('.variacao-de-cor .cor-hex').style.color = contrasteCor(tonsEscuros);
@@ -171,7 +172,6 @@ function aplicarVariacaoDeCor() {
 
   Array.from(variacoesCoresClaras).forEach((variacaoCorClara) => {
     let tonsClaros = getVariacaoDeCor(corBase, variacaoClara, "claro");
-    console.log(corBase);
     variacaoCorClara.style.backgroundColor = tonsClaros;
     variacaoCorClara.querySelector('.variacao-de-cor-clara .cor-hex').innerText = tonsClaros;
     variacaoCorClara.querySelector('.variacao-de-cor-clara .cor-hex').style.color = contrasteCor(tonsClaros);
@@ -238,14 +238,14 @@ function copiarParaAreaDeTransferencia(texto) {
 }
 
 // Eventos
-Array.from(variacoes).forEach((variacaoCor) => {
+Array.from(variacoes).forEach(variacaoCor => {
     variacaoCor.addEventListener('click', () => {
         const corHex = variacaoCor.querySelector('.cor-hex').innerText;
         copiarParaAreaDeTransferencia(corHex);
     });
 });
 
-Array.from(variacoesCoresClaras).forEach((variacaoCorClara) => {
+Array.from(variacoesCoresClaras).forEach(variacaoCorClara => {
     variacaoCorClara.addEventListener('click', () => {
         const corHex = variacaoCorClara.querySelector('.cor-hex').innerText;
         copiarParaAreaDeTransferencia(corHex);
@@ -257,7 +257,6 @@ preview.onclick = () => {
 };
 
 aplicarVariacaoDeCor()
-
 mais.addEventListener('click', () => aplicarZoom(20));
 menos.addEventListener('click', () => aplicarZoom(-20));
 fechar.addEventListener('click', resetarImagem);
@@ -282,7 +281,10 @@ image.addEventListener('click', e => {
     const x = e.offsetX || e.layerX;
     const y = e.offsetY || e.layerY;
     capturarCor(x, y);
+    let corBase1 = selectCor.getAttribute("data-cor-hex");
+    console.log(corBase1);
     aplicarVariacaoDeCor();
+    mostrarPaleta(corBase1);
 });
 
 // Modo escuro
@@ -290,3 +292,88 @@ let troca = document.getElementById("modo-escuro");
 troca.addEventListener("change", function () {
     modoEscuro();
 });
+
+function hexToHsl(hex) {
+  hex = hex.replace(/^#/, "");
+  if (hex.length === 3) hex = hex.split("").map(c => c + c).join("");
+  let r = parseInt(hex.substring(0, 2), 16) / 255;
+  let g = parseInt(hex.substring(2, 4), 16) / 255;
+  let b = parseInt(hex.substring(4, 6), 16) / 255;
+  let max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h, s, l = (max + min) / 2;
+  if (max === min) { h = s = 0; }
+  else {
+    let d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h *= 60;
+  }
+  return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
+}
+
+// Utilitário: HSL → HEX
+function hslToHex(h, s, l) {
+  s /= 100; l /= 100;
+  let c = (1 - Math.abs(2 * l - 1)) * s;
+  let x = c * (1 - Math.abs((h / 60) % 2 - 1));
+  let m = l - c/2;
+  let [r, g, b] = [0,0,0];
+  if (0 <= h && h < 60) [r,g,b] = [c,x,0];
+  else if (60 <= h && h < 120) [r,g,b] = [x,c,0];
+  else if (120 <= h && h < 180) [r,g,b] = [0,c,x];
+  else if (180 <= h && h < 240) [r,g,b] = [0,x,c];
+  else if (240 <= h && h < 300) [r,g,b] = [x,0,c];
+  else if (300 <= h && h < 360) [r,g,b] = [c,0,x];
+  r = Math.round((r+m) * 255);
+  g = Math.round((g+m) * 255);
+  b = Math.round((b+m) * 255);
+  return "#" + [r,g,b].map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+
+// Gerar paleta
+function gerarPaleta(hex, tipo) {
+  let [h, s, l] = hexToHsl(hex);
+  let cores = [];
+
+  switch (tipo) {
+    case "complementar":
+      cores = [h, (h+180)%360];
+      break;
+    case "analogas":
+      cores = [h, (h+30)%360, (h+330)%360];
+      break;
+    case "triade":
+      cores = [h, (h+120)%360, (h+240)%360];
+      break;
+    case "tetradica":
+      cores = [h, (h+90)%360, (h+180)%360, (h+270)%360];
+      break;
+    case "monocromatica":
+      cores = [h]; // mesma cor em 3 luminosidades
+      return [hslToHex(h, s, l), hslToHex(h, s, Math.min(l+20,100)), hslToHex(h, s, Math.max(l-20,0))];
+  }
+  return cores.map(hue => hslToHex(hue, s, l));
+}
+
+// Renderizar paleta
+function mostrarPaleta(hex) {
+  let tipo = document.getElementById("tipo-harmonia").value;
+  let paleta = gerarPaleta(hex, tipo);
+  let container = document.getElementById("resultado-paleta");
+  container.innerHTML = "";
+  paleta.forEach(cor => {
+    let div = document.createElement("div");
+    div.className = "caixa-cor";
+    div.style.backgroundColor = cor;
+    div.textContent = cor.toUpperCase();
+    container.appendChild(div);
+  });
+}
+
+// Exemplo inicial: cor padrão
+tipoHarmonia.addEventListener("change", () => mostrarPaleta(selectCor.getAttribute("data-cor-hex")));
+mostrarPaleta(selectCor.getAttribute("data-cor-hex"));
