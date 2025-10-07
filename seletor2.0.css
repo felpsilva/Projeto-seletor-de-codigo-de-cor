@@ -433,7 +433,6 @@ body::-webkit-scrollbar-thumb{
   display: flex;
   gap: 15px;
   margin-top: 20px;
-  flex-wrap: wrap;
 }
 .caixa-cor {
   width: 100px;
