@@ -155,6 +155,14 @@ input:checked + .slider:before {
   background-color: #121212 !important;
   color: #ffffff;
   transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.selector-dark {
+  background-color: #202020 !important;
+  color: #ffffff;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 0 0 !important;
 }
 
 .p-dark {
@@ -288,7 +296,7 @@ footer {
 }
 
 .footer-dark {
-    background-color: #ffffff73 !important;
+    background-color: #121212 !important;
     color: #000 !important;
 }
 
@@ -361,9 +369,12 @@ body::-webkit-scrollbar-thumb{
   margin-top: 25px;
 }
 .variacao-de-cor,
-.variacao-de-cor-clara {
+.variacao-de-cor-clara,
+.caixa-cor {
   width: 10%;
   height: 125px;
+  display: flex;
+  align-items: center;
 }
 
 .variacao-de-cores .variacao-de-cor:first-child,
@@ -378,8 +389,9 @@ body::-webkit-scrollbar-thumb{
   border-top-right-radius: 8px;
 }
 
-.variacao-de-cor,
-.variacao-de-cor-clara {
+.variacao-de-cor span,
+.variacao-de-cor-clara span,
+.caixa-cor {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   display: flex;
@@ -387,7 +399,8 @@ body::-webkit-scrollbar-thumb{
 }
 
 .variacao-de-cor .cor-hex,
-.variacao-de-cor-clara .cor-hex {
+.variacao-de-cor-clara .cor-hex,
+.caixa-cor span {
     width: 100%;
     display: block;
     text-align: center;
@@ -397,7 +410,9 @@ body::-webkit-scrollbar-thumb{
 }
 
 .variacao-de-cor:hover,
-.variacao-de-cor-clara:hover {
+.variacao-de-cor-clara:hover,
+.caixa-cor:hover
+{
   font-size: 16px;
 }
 
@@ -414,10 +429,6 @@ body::-webkit-scrollbar-thumb{
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   font-family: "Open Sans", sans-serif;
 }
-.paletas h2 {
-  font-size: 1.8em;
-  margin-bottom: 15px;
-}
 .resultado-paleta {
   display: flex;
   gap: 15px;
@@ -429,13 +440,19 @@ body::-webkit-scrollbar-thumb{
   height: 100px;
   border-radius: 8px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 13px;
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   padding: 5px;
+}
+
+#tipo-harmonia {
+  padding: 10px 15px;
+  border: none;
+  box-shadow: 0px 1px 5px -3px;
+  display: block;
+  margin: 10px 0px;
 }
 
 /* Responsividade */

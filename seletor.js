@@ -202,6 +202,9 @@ function modoEscuro() {
     let selectCor = document.getElementById("selectCor");
     let variacoesDeCores = document.querySelector(".variacao-de-cores");
     let footer = document.querySelector("footer");
+    let paletas = document.querySelector(".paletas");
+    let label = document.querySelectorAll("label");
+    let tipoHarmonia = document.getElementById("tipo-harmonia");
 
     if (troca.checked) {
         logo.src = "./img01/logo.PNG";
@@ -214,6 +217,9 @@ function modoEscuro() {
         resultado.classList.remove("resultado-dark");
         variacoesDeCores.classList.remove("variacao-de-cores-dark");
         footer.classList.remove("footer-dark");
+        paletas.classList.remove("corpo-dark");
+        label.forEach(el => el.classList.remove("p-dark"));
+        tipoHarmonia.classList.remove("selector-dark")
     } else {
         logo.src = "./img01/logo-black.png";
         main.classList.add("main-dark");
@@ -225,6 +231,9 @@ function modoEscuro() {
         resultado.classList.add("resultado-dark");
         variacoesDeCores.classList.add("variacao-de-cores-dark");
         footer.classList.add("footer-dark");
+        paletas.classList.add("corpo-dark");
+        label.forEach(el => el.classList.add("p-dark"));
+        tipoHarmonia.classList.add("selector-dark");
     }
 }
 
@@ -367,10 +376,14 @@ function mostrarPaleta(hex) {
   container.innerHTML = "";
   paleta.forEach(cor => {
     let div = document.createElement("div");
+    let span = document.createElement("span");
     div.className = "caixa-cor";
     div.style.backgroundColor = cor;
-    div.textContent = cor.toUpperCase();
+    span.style.color = contrasteCor(cor);
+    span.textContent = cor;
     container.appendChild(div);
+    div.appendChild(span);
+    div.addEventListener("click", () => copiarParaAreaDeTransferencia(cor));
   });
 }
 
