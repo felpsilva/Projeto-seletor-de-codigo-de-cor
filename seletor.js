@@ -1,102 +1,197 @@
-// Seletores principais
-const imageFile   = document.querySelector('#arquivo');
-const preview     = document.querySelector('.preview');
-const image       = document.querySelector('#image');
-const fechar      = document.querySelector('#fechar');
-const msg         = document.querySelector('.msg');
-const zoom        = document.querySelector('.controleTamanho');
-const mais        = document.querySelector('.mais');
-const menos       = document.querySelector('.menos');
-const canvas      = document.querySelector('#cs');
-const resultado   = document.querySelector('#resultado');
-const previewCor  = document.querySelector('#previewCor');
-const variacoesDeCores  = document.querySelector('.variacao-de-cores');
-let selectCor     = document.querySelector('#selectCor');
-let variacoes = document.querySelectorAll('.variacao-de-cor');
-let variacoesCoresClaras = document.querySelectorAll('.variacao-de-cor-clara');
-let tipoHarmonia = document.getElementById("tipo-harmonia");
-let largura = 100;
-let altura  = 100;
+/** ===========================
+ * 🎨 SELETOR DE CORES - VERSÃO REFINADA
+ * ============================ **/
 
-// Estado inicial
-fechar.classList.add('fecharOff');
+// -------- SELETORES PRINCIPAIS --------
+
+const selectors = {
+    file: document.querySelector('#arquivo'),
+    preview: document.querySelector('.preview'),
+    image: document.querySelector('#image'),
+    close: document.querySelector('#fechar'),
+    msg: document.querySelector('.msg'),
+    zoom: document.querySelector('.controleTamanho'),
+    zoomIn: document.querySelector('.mais'),
+    zoomOut: document.querySelector('.menos'),
+    canvas: document.querySelector('#cs'),
+    result: document.querySelector('#resultado'),
+    previewColor: document.querySelector('#previewCor'),
+    colorOutput: document.querySelector('#selectCor'),
+    darkToggle: document.querySelector('#modo-escuro'),
+    harmonyType: document.querySelector('#tipo-harmonia'),
+    variationsDark: document.querySelectorAll('.variacao-de-cor'),
+    variationsLight: document.querySelectorAll('.variacao-de-cor-clara'),
+    palettesContainer: document.querySelector('#resultado-paleta'),
+    tipoHarmonia: document.getElementById("tipo-harmonia"),
+};
+
+let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia } = selectors;
+
+// -------- ESTADO INICIAL --------
+let [width, height] = [100, 100];
+close.classList.add('fecharOff');
 zoom.classList.add('controleTamanhoOff');
 
-// Função para atualizar tamanho da imagem
-function atualizarTamanhoImagem() {
-    image.style.width = `${largura}%`;
-    image.style.height = `${altura}%`;
-}
+// -------- FUNÇÕES AUXILIARES --------
+const atualizarTamanho = () => {
+    image.style.width = `${width}%`;
+    image.style.height = `${height}%`;
+};
 
-// Função para resetar visual
-function resetarImagem() {
+const resetarImagem = () => {
     image.removeAttribute('src');
-    imageFile.value = "";
-    fechar.classList.add('fecharOff');
-    previewCor.style.backgroundColor = "transparent";
-    selectCor.style.backgroundColor = "transparent";
-    resultado.innerHTML = '';
+    file.value = '';
+    close.classList.add('fecharOff');
+    previewColor.style.backgroundColor = colorOutput.style.backgroundColor = 'transparent';
+    result.innerHTML = '';
     msg.classList.remove('msgDesativo');
     zoom.classList.add('controleTamanhoOff');
-    largura = altura = 0;
-    atualizarTamanhoImagem();
-}
+    width = height = 0;
+    atualizarTamanho();
+};
 
-// Função para zoom
-function aplicarZoom(delta) {
-    largura += delta;
-    altura  += delta;
-    atualizarTamanhoImagem();
-}
+const aplicarZoom = delta => {
+    width += delta;
+    height += delta;
+    atualizarTamanho();
+};
 
-// Função para carregar imagem
-function carregarImagem(arquivo) {
+// -------- CARREGAMENTO DE IMAGEM --------
+const carregarImagem = arquivo => {
     const reader = new FileReader();
-    reader.onloadend = () => image.setAttribute('src', reader.result);
+    reader.onloadend = () => (image.src = reader.result);
     reader.readAsDataURL(arquivo);
 
-    largura = altura = 100;
-    atualizarTamanhoImagem();
-
-    fechar.classList.remove('fecharOff');
+    width = height = 100;
+    atualizarTamanho();
+    close.classList.remove('fecharOff');
     msg.classList.add('msgDesativo');
     zoom.classList.remove('controleTamanhoOff');
-}
+};
 
-// Função para capturar cor no ponto
-function capturarCor(x, y) {
+// -------- CAPTURA DE COR --------
+const capturarCor = (x, y) => {
     useCanvas(canvas, image, () => {
-        const pixel = canvas.getContext('2d').getImageData(x, y, 1, 1).data;
-        const rgb   = `${pixel[0]}, ${pixel[1]}, ${pixel[2]}`;
-        const hsl   = rgbParaHsl(pixel[0], pixel[1], pixel[2]);
-        const hex   = rgbParaHex(pixel[0], pixel[1], pixel[2]);
+        const [r, g, b, a] = canvas.getContext('2d').getImageData(x, y, 1, 1).data;
+        const rgb = `${r}, ${g}, ${b}`;
+        const hsl = rgbParaHsl(r, g, b);
+        const hex = rgbParaHex(r, g, b);
 
-        resultado.innerHTML  = `RGB: ${rgb}<br>`;
-        resultado.innerHTML += `HSL: ${hsl}<br>`;
-        resultado.innerHTML += `Hexadecimal: ${hex}`;
+        result.innerHTML = `
+      RGB: ${rgb}<br>
+      HSL: ${hsl}<br>
+      Hexadecimal: ${hex}
+    `;
 
-        selectCor.style.backgroundColor = hex;
-        return selectCor.setAttribute("data-cor-hex", hex);
+        colorOutput.style.backgroundColor = hex;
+        colorOutput.setAttribute('data-cor-hex', hex);
     });
-}
+};
 
-// Função para usar canvas
-function useCanvas(el, img, callback) {
+// -------- CANVAS --------
+const useCanvas = (el, img, callback) => {
+    const ctx = el.getContext('2d');
     el.width = img.width;
     el.height = img.height;
-    el.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
+    ctx.drawImage(img, 0, 0, img.width, img.height);
     callback();
-}
+};
 
-// Conversões de cor
-function rgbParaHsl(r, g, b) {
-    r /= 255; g /= 255; b /= 255;
-    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+// -------- CONVERSÕES DE COR --------
+const rgbParaHsl = (r, g, b) => {
+    [r, g, b] = [r, g, b].map(v => v / 255);
+    const max = Math.max(r, g, b),
+        min = Math.min(r, g, b);
     let h, s, l = (max + min) / 2;
 
-    if (max === min) {
-        h = s = 0;
+    if (max === min) h = s = 0;
+    else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r: h = ((g - b) / d + (g < b ? 6 : 0)); break;
+            case g: h = ((b - r) / d + 2); break;
+            case b: h = ((r - g) / d + 4); break;
+        }
+        h *= 60;
+    }
+
+    return `${Math.round(h)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%`;
+};
+
+const rgbParaHex = (r, g, b) => `#${[r, g, b].map(v => v.toString(16).padStart(2, '0')).join('')}`;
+
+// -------- VARIAÇÕES DE COR --------
+const getVariacaoDeCor = (cor, variacao, ton) => {
+    if (variacao === 0) return cor;
+    cor = cor.replace(/^#/, '').padEnd(6, cor.slice(-1));
+
+    let [r, g, b] = [
+        parseInt(cor.substring(0, 2), 16),
+        parseInt(cor.substring(2, 4), 16),
+        parseInt(cor.substring(4, 6), 16)
+    ];
+
+    variacao = Math.min(100, Math.max(0, variacao));
+    let fator = variacao / 100;
+
+    if (ton === 'escuro') {
+        [r, g, b] = [r, g, b].map(v => Math.round(v * (1 - fator)));
     } else {
+        [r, g, b] = [r, g, b].map(v => Math.round(v + (255 - v) * fator));
+    }
+
+    return rgbParaHex(r, g, b);
+};
+
+const contrasteCor = cor => {
+    cor = cor.replace(/^#/, '');
+    const [r, g, b] = [
+        parseInt(cor.substring(0, 2), 16),
+        parseInt(cor.substring(2, 4), 16),
+        parseInt(cor.substring(4, 6), 16)
+    ];
+    const luminancia = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminancia > 0.5 ? '#000' : '#fff';
+};
+
+// -------- APLICAÇÃO DE VARIAÇÕES --------
+const aplicarVariacaoDeCor = () => {
+    const corBase = colorOutput.getAttribute('data-cor-hex') || '#336699';
+    let variacaoEscura = 0, variacaoClara = 0;
+
+    variationsDark.forEach(div => {
+        const hex = getVariacaoDeCor(corBase, variacaoEscura, 'escuro');
+        const label = div.querySelector('.cor-hex');
+        div.style.backgroundColor = hex;
+        label.innerText = hex;
+        label.style.color = contrasteCor(hex);
+        variacaoEscura += 10;
+    });
+
+    variationsLight.forEach(div => {
+        const hex = getVariacaoDeCor(corBase, variacaoClara, 'claro');
+        const label = div.querySelector('.cor-hex');
+        div.style.backgroundColor = hex;
+        label.innerText = hex;
+        label.style.color = contrasteCor(hex);
+        variacaoClara += 10;
+    });
+};
+
+// -------- PALLETES HARMONIZADAS --------
+const hexToHsl = hex => {
+    hex = hex.replace(/^#/, '');
+    if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+    let [r, g, b] = [
+        parseInt(hex.substring(0, 2), 16) / 255,
+        parseInt(hex.substring(2, 4), 16) / 255,
+        parseInt(hex.substring(4, 6), 16) / 255
+    ];
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+    if (max === min) h = s = 0;
+    else {
         const d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
         switch (max) {
@@ -104,92 +199,58 @@ function rgbParaHsl(r, g, b) {
             case g: h = (b - r) / d + 2; break;
             case b: h = (r - g) / d + 4; break;
         }
+        h *= 60;
     }
-    h = Math.round(h * 60);
-    s = Math.round(s * 100);
-    l = Math.round(l * 100);
+    return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
+};
 
-    return `${h}, ${s}%, ${l}%`;
-}
+const hslToHex = (h, s, l) => {
+    s /= 100; l /= 100;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = l - c / 2;
+    let [r, g, b] = [0, 0, 0];
 
-function conversorHex(v) {
-    const hex = v.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-}
+    if (h < 60) [r, g, b] = [c, x, 0];
+    else if (h < 120) [r, g, b] = [x, c, 0];
+    else if (h < 180) [r, g, b] = [0, c, x];
+    else if (h < 240) [r, g, b] = [0, x, c];
+    else if (h < 300) [r, g, b] = [x, 0, c];
+    else[r, g, b] = [c, 0, x];
 
-function rgbParaHex(r, g, b) {
-    return `#${conversorHex(r)}${conversorHex(g)}${conversorHex(b)}`;
-}
+    return rgbParaHex(
+        Math.round((r + m) * 255),
+        Math.round((g + m) * 255),
+        Math.round((b + m) * 255)
+    );
+};
 
-function getVariacaoDeCor(cor, variacao, ton) {
-    if(variacao === 0) return cor;
-
-    cor = cor.replace(/^#/, "");
-
-    // Expande shorthand tipo #abc → #aabbcc
-    if (cor.length === 3) {
-        cor = cor.split("").map(c => c + c).join("");
+const gerarPaleta = (hex, tipo) => {
+    const [h, s, l] = hexToHsl(hex);
+    switch (tipo) {
+        case 'complementar': return [hslToHex(h, s, l), hslToHex((h + 180) % 360, s, l)];
+        case 'analogas': return [hslToHex(h, s, l), hslToHex((h + 30) % 360, s, l), hslToHex((h + 330) % 360, s, l)];
+        case 'triade': return [hslToHex(h, s, l), hslToHex((h + 120) % 360, s, l), hslToHex((h + 240) % 360, s, l)];
+        case 'tetradica': return [hslToHex(h, s, l), hslToHex((h + 90) % 360, s, l), hslToHex((h + 180) % 360, s, l), hslToHex((h + 270) % 360, s, l)];
+        case 'monocromatica': return [hslToHex(h, s, l), hslToHex(h, s, Math.min(l + 20, 100)), hslToHex(h, s, Math.max(l - 20, 0))];
+        default: return [];
     }
+};
 
-    // Converte hex para RGB
-    let r = parseInt(cor.substring(0, 2), 16);
-    let g = parseInt(cor.substring(2, 4), 16);
-    let b = parseInt(cor.substring(4, 6), 16);
-
-    // Garante que a variação fique entre 0 e 100
-    variacao = Math.min(100, Math.max(0, variacao));
-
-    // Aplica fator
-    if (ton === "escuro"){
-        let fator = (100 - variacao) / 100;
-        r = Math.round(r * fator);
-        g = Math.round(g * fator);
-        b = Math.round(b * fator);
-        return rgbParaHex(r, g, b);
-    }
-
-    if (ton === "claro") {
-        let fator = variacao / 100;
-        r = Math.round(r + (255 - r) * fator);
-        g = Math.round(g + (255 - g) * fator);
-        b = Math.round(b + (255 - b) * fator);
-        return rgbParaHex(r, g, b);
-    }
-}
-
-function aplicarVariacaoDeCor() {
-  let corBase = selectCor.getAttribute("data-cor-hex")
-  let variacaoEscura = 0;
-  let variacaoClara = 0
-  Array.from(variacoes).forEach((variacaoCor) => {
-    let tonsEscuros = getVariacaoDeCor(corBase, variacaoEscura, "escuro");
-    console.log("tons escuros" + tonsEscuros);
-    variacaoCor.style.backgroundColor = tonsEscuros;
-    variacaoCor.querySelector('.variacao-de-cor .cor-hex').innerText = tonsEscuros;
-    variacaoCor.querySelector('.variacao-de-cor .cor-hex').style.color = contrasteCor(tonsEscuros);
-    variacaoEscura += 10;
-  });
-
-  Array.from(variacoesCoresClaras).forEach((variacaoCorClara) => {
-    let tonsClaros = getVariacaoDeCor(corBase, variacaoClara, "claro");
-    variacaoCorClara.style.backgroundColor = tonsClaros;
-    variacaoCorClara.querySelector('.variacao-de-cor-clara .cor-hex').innerText = tonsClaros;
-    variacaoCorClara.querySelector('.variacao-de-cor-clara .cor-hex').style.color = contrasteCor(tonsClaros);
-    variacaoClara += 10;
-  })
-}
-
-function contrasteCor(cor) {
-    cor = cor.replace(/^#/, "");
-    if (cor.length === 3) {
-        cor = cor.split("").map(c => c + c).join("");
-    }
-    const r = parseInt(cor.substring(0, 2), 16);
-    const g = parseInt(cor.substring(2, 4), 16);
-    const b = parseInt(cor.substring(4, 6), 16);
-    const luminancia = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminancia > 0.5 ? '#000000' : '#FFFFFF';
-}
+const mostrarPaleta = hex => {
+    const tipo = harmonyType.value;
+    const paleta = gerarPaleta(hex, tipo);
+    palettesContainer.innerHTML = '';
+    paleta.forEach(cor => {
+        const div = document.createElement('div');
+        div.className = 'caixa-cor';
+        div.style.backgroundColor = cor;
+        div.textContent = cor;
+        div.style.color = contrasteCor(cor);
+        div.addEventListener('click', () => copiarParaAreaDeTransferencia(cor));
+        palettesContainer.appendChild(div);
+    });
+};
 
 function modoEscuro() {
     let logo = document.querySelector(".logo");
@@ -237,156 +298,75 @@ function modoEscuro() {
     }
 }
 
-function copiarParaAreaDeTransferencia(texto) {
-    navigator.clipboard.writeText(texto).then(() => {
-        alert(`Cor ${texto} copiada para a área de transferência!`);
-        }).catch(err => {
-        console.error('Erro ao copiar para a área de transferência: ', err);
-        alert('Erro ao copiar para a área de transferência.');
-    });
-}
+// -------- CÓPIA DE CORES --------
+const copiarParaAreaDeTransferencia = texto =>
+    navigator.clipboard.writeText(texto)
+        .then(() => alert(`Cor ${texto} copiada!`))
+        .catch(() => alert('Erro ao copiar cor!'));
 
-// Eventos
-Array.from(variacoes).forEach(variacaoCor => {
-    variacaoCor.addEventListener('click', () => {
-        const corHex = variacaoCor.querySelector('.cor-hex').innerText;
-        copiarParaAreaDeTransferencia(corHex);
-    });
-});
+// -------- EVENTOS PRINCIPAIS --------
+preview.addEventListener('click', () => !image.src && file.click());
+zoomIn.addEventListener('click', () => aplicarZoom(20));
+zoomOut.addEventListener('click', () => aplicarZoom(-20));
+close.addEventListener('click', resetarImagem);
 
-Array.from(variacoesCoresClaras).forEach(variacaoCorClara => {
-    variacaoCorClara.addEventListener('click', () => {
-        const corHex = variacaoCorClara.querySelector('.cor-hex').innerText;
-        copiarParaAreaDeTransferencia(corHex);
-    })
-})
-
-preview.onclick = () => {
-    if (!image.src) imageFile.click();
-};
-
-aplicarVariacaoDeCor()
-mais.addEventListener('click', () => aplicarZoom(20));
-menos.addEventListener('click', () => aplicarZoom(-20));
-fechar.addEventListener('click', resetarImagem);
-
-window.addEventListener('DOMContentLoaded', () => {
-    imageFile.addEventListener('change', e => {
-        const arquivo = e.target.files.item(0);
-        if (arquivo) carregarImagem(arquivo);
-    });
+file.addEventListener('change', e => {
+    const arquivo = e.target.files.item(0);
+    if (arquivo) carregarImagem(arquivo);
 });
 
 image.addEventListener('mousemove', e => {
-    const x = e.offsetX || e.layerX;
-    const y = e.offsetY || e.layerY;
+    const { offsetX, offsetY } = e;
     useCanvas(canvas, image, () => {
-        const pixel = canvas.getContext('2d').getImageData(x, y, 1, 1).data;
-        previewCor.style.backgroundColor = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+        const pixel = canvas.getContext('2d').getImageData(offsetX, offsetY, 1, 1).data;
+        previewColor.style.backgroundColor = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
     });
 });
 
 image.addEventListener('click', e => {
-    const x = e.offsetX || e.layerX;
-    const y = e.offsetY || e.layerY;
-    capturarCor(x, y);
-    let corBase1 = selectCor.getAttribute("data-cor-hex");
-    console.log(corBase1);
+    const { offsetX, offsetY } = e;
+    capturarCor(offsetX, offsetY);
     aplicarVariacaoDeCor();
-    mostrarPaleta(corBase1);
+    mostrarPaleta(colorOutput.getAttribute('data-cor-hex'));
 });
 
-// Modo escuro
+harmonyType.addEventListener('change', () =>
+    mostrarPaleta(colorOutput.getAttribute('data-cor-hex'))
+);
+
+function mostrarDescricaoHarmonia(tipo) {
+    document.querySelectorAll('#descricao-harmonias .descricao').forEach(el => el.hidden = true);
+
+    const descricaoAtiva = document.getElementById(`descricao-${tipo}`);
+    if (descricaoAtiva) {
+        descricaoAtiva.hidden = false;
+    }
+}
+
+// copiar variações de cor 
+document.querySelectorAll('.cor-hex').forEach(el => {
+    el.addEventListener('click', function() {
+        copiarParaAreaDeTransferencia(this.innerText);
+    });
+});
+
+// Quando o tipo de harmonia for alterado:
+tipoHarmonia.addEventListener("change", () => {
+    mostrarPaleta(selectCor.getAttribute("data-cor-hex"));
+    mostrarDescricaoHarmonia(tipoHarmonia.value);
+});
+
+// Modo escuro 
 let troca = document.getElementById("modo-escuro");
 troca.addEventListener("change", function () {
-    modoEscuro();
+    modoEscuro(); 
 });
 
-function hexToHsl(hex) {
-  hex = hex.replace(/^#/, "");
-  if (hex.length === 3) hex = hex.split("").map(c => c + c).join("");
-  let r = parseInt(hex.substring(0, 2), 16) / 255;
-  let g = parseInt(hex.substring(2, 4), 16) / 255;
-  let b = parseInt(hex.substring(4, 6), 16) / 255;
-  let max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h, s, l = (max + min) / 2;
-  if (max === min) { h = s = 0; }
-  else {
-    let d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch (max) {
-      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-      case g: h = (b - r) / d + 2; break;
-      case b: h = (r - g) / d + 4; break;
-    }
-    h *= 60;
-  }
-  return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
-}
+// Exibe o primeiro por padrão:
+mostrarDescricaoHarmonia("complementar");
 
-// Utilitário: HSL → HEX
-function hslToHex(h, s, l) {
-  s /= 100; l /= 100;
-  let c = (1 - Math.abs(2 * l - 1)) * s;
-  let x = c * (1 - Math.abs((h / 60) % 2 - 1));
-  let m = l - c/2;
-  let [r, g, b] = [0,0,0];
-  if (0 <= h && h < 60) [r,g,b] = [c,x,0];
-  else if (60 <= h && h < 120) [r,g,b] = [x,c,0];
-  else if (120 <= h && h < 180) [r,g,b] = [0,c,x];
-  else if (180 <= h && h < 240) [r,g,b] = [0,x,c];
-  else if (240 <= h && h < 300) [r,g,b] = [x,0,c];
-  else if (300 <= h && h < 360) [r,g,b] = [c,0,x];
-  r = Math.round((r+m) * 255);
-  g = Math.round((g+m) * 255);
-  b = Math.round((b+m) * 255);
-  return "#" + [r,g,b].map(x=>x.toString(16).padStart(2,"0")).join("");
-}
-
-// Gerar paleta
-function gerarPaleta(hex, tipo) {
-  let [h, s, l] = hexToHsl(hex);
-  let cores = [];
-
-  switch (tipo) {
-    case "complementar":
-      cores = [h, (h+180)%360];
-      break;
-    case "analogas":
-      cores = [h, (h+30)%360, (h+330)%360];
-      break;
-    case "triade":
-      cores = [h, (h+120)%360, (h+240)%360];
-      break;
-    case "tetradica":
-      cores = [h, (h+90)%360, (h+180)%360, (h+270)%360];
-      break;
-    case "monocromatica":
-      cores = [h]; // mesma cor em 3 luminosidades
-      return [hslToHex(h, s, l), hslToHex(h, s, Math.min(l+20,100)), hslToHex(h, s, Math.max(l-20,0))];
-  }
-  return cores.map(hue => hslToHex(hue, s, l));
-}
-
-// Renderizar paleta
-function mostrarPaleta(hex) {
-  let tipo = document.getElementById("tipo-harmonia").value;
-  let paleta = gerarPaleta(hex, tipo);
-  let container = document.getElementById("resultado-paleta");
-  container.innerHTML = "";
-  paleta.forEach(cor => {
-    let div = document.createElement("div");
-    let span = document.createElement("span");
-    div.className = "caixa-cor";
-    div.style.backgroundColor = cor;
-    span.style.color = contrasteCor(cor);
-    span.textContent = cor;
-    container.appendChild(div);
-    div.appendChild(span);
-    div.addEventListener("click", () => copiarParaAreaDeTransferencia(cor));
-  });
-}
-
-// Exemplo inicial: cor padrão
-tipoHarmonia.addEventListener("change", () => mostrarPaleta(selectCor.getAttribute("data-cor-hex")));
-mostrarPaleta(selectCor.getAttribute("data-cor-hex"));
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    mostrarPaleta(colorOutput.getAttribute('data-cor-hex'))
+    aplicarVariacaoDeCor();
+});

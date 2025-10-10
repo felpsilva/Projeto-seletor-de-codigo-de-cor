@@ -454,6 +454,63 @@ body::-webkit-scrollbar-thumb{
   margin: 10px 0px;
 }
 
+/* ======== Descrições das Harmonias ======== */
+.descricao-harmonias {
+  margin-top: 2rem;
+  background: var(--fundo-secundario, #f9f9f9);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.descricao-harmonias .descricao {
+  animation: fadeIn 0.4s ease;
+}
+
+.descricao-harmonias .descricao[hidden] {
+  display: none !important;
+}
+
+.descricao-harmonias .descricao h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.4rem;
+}
+
+.descricao-harmonias .descricao p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.paletas label {
+    display: block;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======== Modo Escuro ======== */
+.main-dark .descricao-harmonias {
+  background-color: #121212;
+  box-shadow: none;
+}
+
+.main-dark .descricao-harmonias h4,
+.main-dark .descricao-harmonias p {
+  color: #f1f1f1;
+}
+
+.main-dark .descricao-harmonias {
+  background-color: #121212;
+  box-shadow: none;
+}
+
 /* Responsividade */
 @media (max-width: 996px) {
   .corpo {
@@ -506,7 +563,7 @@ body::-webkit-scrollbar-thumb{
   .variacao-de-cor,
   .variacao-de-cor-clara {
     width: 100%;
-    height: 30px;
+    height: 40px;
   }
 
   .variacao-de-cores .variacao-de-cor:last-child,
@@ -530,6 +587,22 @@ body::-webkit-scrollbar-thumb{
   #resultado {
     margin: 55px 0;
     width: 100%;
+  }
+
+  .descricao-harmonias .descricao p {
+    font-size: 0.95rem;
+  }
+
+  .descricao-harmonias .descricao h4 {
+    font-size: 1.1rem;
+  }
+
+  .descricao-harmonias .descricao p {
+    font-size: 0.9rem;
+  }
+
+  .caixa-cor {
+    font-size: 10px;
   }
 }
 
