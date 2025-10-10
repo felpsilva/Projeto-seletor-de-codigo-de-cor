@@ -51,9 +51,11 @@ const resetarImagem = () => {
 };
 
 const aplicarZoom = delta => {
-    width += delta;
-    height += delta;
-    atualizarTamanho();
+    if (width > 20 || delta >= 20) {
+        width += delta;
+        height += delta;
+        atualizarTamanho();
+    }
 };
 
 // -------- CARREGAMENTO DE IMAGEM --------
