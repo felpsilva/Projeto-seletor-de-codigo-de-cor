@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://seletordecoronline.com.br/</loc>
+    <lastmod>2025-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://seletordecoronline.com.br/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://seletordecoronline.com.br/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://seletordecoronline.com.br/es/" />
+  </url>
+  <url>
+    <loc>https://seletordecoronline.com.br/en/</loc>
+    <lastmod>2025-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://seletordecoronline.com.br/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://seletordecoronline.com.br/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://seletordecoronline.com.br/es/" />
+  </url>
+  <url>
+    <loc>https://seletordecoronline.com.br/es/</loc>
+    <lastmod>2025-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://seletordecoronline.com.br/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://seletordecoronline.com.br/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://seletordecoronline.com.br/es/" />
+  </url>
+</urlset>
