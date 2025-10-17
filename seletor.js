@@ -4,6 +4,8 @@
 
 // -------- SELETORES PRINCIPAIS --------
 
+const idiomasSuportados = ['en', 'es', 'fr', 'de'];
+
 const selectors = {
     file: document.querySelector('#arquivo'),
     preview: document.querySelector('.preview'),
@@ -23,7 +25,7 @@ const selectors = {
     variationsLight: document.querySelectorAll('.variacao-de-cor-clara'),
     palettesContainer: document.querySelector('#resultado-paleta'),
     tipoHarmonia: document.getElementById("tipo-harmonia"),
-    paginaInternacional: window.location.pathname.includes('/en/'),
+    paginaInternacional: idiomasSuportados.some(lang => window.location.pathname.includes(`/${lang}/`))
 };
 
 let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia, paginaInternacional } = selectors;
