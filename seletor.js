@@ -28,7 +28,7 @@ const selectors = {
 
 let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia, paginaInternacional } = selectors;
 
-const basePath = paginaInternacional ? '../' : './';
+const basePath = paginaInternacional ? './../' : './';
 
 // -------- ESTADO INICIAL --------
 let [width, height] = [100, 100];
