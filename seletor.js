@@ -23,9 +23,12 @@ const selectors = {
     variationsLight: document.querySelectorAll('.variacao-de-cor-clara'),
     palettesContainer: document.querySelector('#resultado-paleta'),
     tipoHarmonia: document.getElementById("tipo-harmonia"),
+    paginaInternacional: window.location.pathname.includes('/en/'),
 };
 
-let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia } = selectors;
+let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia, paginaInternacional } = selectors;
+
+const basePath = paginaInternacional ? '../' : './';
 
 // -------- ESTADO INICIAL --------
 let [width, height] = [100, 100];
@@ -254,6 +257,10 @@ const mostrarPaleta = hex => {
     });
 };
 
+function getImagePath(fileName) {
+  return `${basePath}img01/${fileName}`;
+}
+
 function modoEscuro() {
     let logo = document.querySelector(".logo");
     let header = document.querySelector("header");
@@ -270,7 +277,7 @@ function modoEscuro() {
     let tipoHarmonia = document.getElementById("tipo-harmonia");
 
     if (troca.checked) {
-        logo.src = "./img01/logo.PNG";
+        logo.src = getImagePath("logo.PNG");
         main.classList.remove("main-dark");
         topo.classList.remove("topo-dark");
         corpo.classList.remove("corpo-dark");
@@ -284,7 +291,7 @@ function modoEscuro() {
         label.forEach(el => el.classList.remove("p-dark"));
         tipoHarmonia.classList.remove("selector-dark")
     } else {
-        logo.src = "./img01/logo-black.png";
+        logo.src = getImagePath("logo-black.png");
         main.classList.add("main-dark");
         topo.classList.add("topo-dark");
         corpo.classList.add("corpo-dark");

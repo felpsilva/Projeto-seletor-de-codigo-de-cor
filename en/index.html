@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description"
+        content="Easily discover the RGB, HEX, or HSL color code from any point in an image using our free online color picker. Precise and simple to use.">
+    <meta name="keywords" content="color picker, eyedropper, RGB, HEX, HSL, image color code, online color tool">
+    <meta name="author" content="Felipe Silva">
+
+    <!-- Alternate languages (hreflang) -->
+    <link rel="alternate" hreflang="pt-BR" href="https://seletordecoronline.com.br/" />
+    <link rel="alternate" hreflang="en" href="https://seletordecoronline.com.br/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://seletordecoronline.com.br/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="What Color Is This? – Online Color Picker">
+    <meta property="og:description"
+        content="Free online tool to identify the color of any point in an image in RGB, HSL and HEX. Easy and accurate.">
+    <meta property="og:image" content="https://seletordecoronline.com.br/img01/logo.PNG">
+    <meta property="og:type" content="website">
+
+    <!-- schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Online Color Picker",
+        "url": "https://seletordecoronline.com.br/en/",
+        "description": "Free online tool to identify colors from images in RGB, HEX and HSL with precision.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web",
+        "author": {
+            "@type": "Person",
+            "name": "Felipe Silva",
+            "url": "https://www.linkedin.com/in/felipe-pereira-20b70a205/"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Felipe Silva"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Felipe Silva",
+            "url": "https://github.com/felpsilva"
+        },
+        "inLanguage": "en",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87BP700JRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-87BP700JRL');
+    </script>
+
+    <link rel="icon" href="../img01/conta_gotas.png">
+    <link rel="stylesheet" href="../seletor2.0.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <title>Online Color Picker – Identify the Color Code from Any Image</title>
+</head>
+
+<body>
+    <main>
+        <header class="topo" id="topo">
+            <div class="nav">
+                <div>
+                    <img class="logo" src="../img01/logo.PNG" alt="Online Color Picker Logo" draggable="false">
+                </div>
+                <div class="modo-escuro">
+                    <label class="switch">
+                        <input type="checkbox" id="modo-escuro" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <section class="corpo" id="corpo">
+            <article class="intro">
+                <h1>Online Color Picker</h1>
+                <h2>Free and Accurate Eyedropper Tool to Capture Any Color</h2>
+                <p>
+                    With this free online tool, you can get the <strong>RGB, HSL, or HEX</strong> color code of any
+                    point in an image.
+                    Upload an image and click anywhere to find the exact color.
+                </p>
+            </article>
+                        <section class="campo" aria-label="Área de seleção de imagem e exibição de cor">
+                <div class="painel-view">
+                    <div class="content">
+                        <img src="../img01/fechar.png" alt="Ícone para fechar imagem" id="fechar">
+                        <div class="entrada">
+                            <div class="preview" id="preview">
+                                <p class="msg">Click here to insert an image</p>
+                                <img id="image" draggable="false">
+                                <canvas id="cs" style="display:none;"></canvas>
+                                <input type="file" name="arquivo1" id="arquivo" accept="image/*"
+                                    aria-label="Envie uma imagem para detectar cores">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controleTamanho">
+                        <img src="../img01/mais.png" alt="Aumentar zoom" class="mais">
+                        <img src="../img01/menos.png" alt="Diminuir zoom" class="menos">
+                    </div>
+                </div>
+                <div class="saida">
+                    <div class="painel">
+                        <div class="painel-pre-selecao">
+                            <h3>MOUSE POINT</h3>
+                            <div id="previewCor" aria-label="Pré-visualização da cor"></div>
+                        </div>
+                        <div class="painel-cor-selecionada">
+                            <h3>SELECTED COLOR</h3>
+                            <div id="selectCor" aria-label="Cor selecionada" data-cor-hex="#336699"></div>
+                        </div>
+                    </div>
+                    <div id="select">
+                        <div name="resultado" id="resultado" aria-live="polite"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="variacoes" aria-label="Color variations">
+                <h2>Color Variations</h2>
+                <p>
+                    In addition to showing the exact color selected in your image, our tool automatically generates
+                    <strong>20 tonal variations</strong>, both lighter and darker.
+                    Each variation is created by adding <strong>10% pure black or white</strong> to the original color,
+                    forming
+                    a smooth gradient of shades.
+                </p>
+
+                <h3>Darker tones</h3>
+                <div class="variacao-de-cores">
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor"><span class="cor-hex"></span></div>
+                </div>
+
+                <h3>Lighter tones</h3>
+                <div class="variacao-de-cores-claras">
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                    <div class="variacao-de-cor-clara"><span class="cor-hex"></span></div>
+                </div>
+            </section>
+            <section class="paletas" aria-label="Color harmony palettes">
+                <article class="harmonia-cores">
+                    <h2>Color Harmony</h2>
+                    <p>
+                        Color harmony refers to visually pleasing color combinations derived from geometric
+                        relationships within
+                        the color wheel. Our color picker automatically generates these harmonious palettes based on the
+                        color you select.
+                    </p>
+                </article>
+
+                <h3>Harmonized Color Palettes</h3>
+                <p>Select a harmony type to view color combinations that work well together.</p>
+
+                <label for="tipo-harmonia">Select palette type</label>
+                <select id="tipo-harmonia">
+                    <option value="complementar">Complementary</option>
+                    <option value="analogas">Analogous</option>
+                    <option value="triade">Triadic</option>
+                    <option value="tetradica">Tetradic</option>
+                    <option value="monocromatica">Monochromatic</option>
+                </select>
+
+                <div id="resultado-paleta" class="resultado-paleta"></div>
+
+                <section id="descricao-harmonias" class="descricao-harmonias">
+                    <div id="descricao-complementar" class="descricao" hidden>
+                        <h4>Complementary Harmony</h4>
+                        <p>
+                            <strong>Complementary colors</strong> are positioned opposite each other on the color wheel.
+                            This combination
+                            creates strong contrast and visual impact, perfect for emphasizing important design
+                            elements.
+                        </p>
+                    </div>
+
+                    <div id="descricao-analogas" class="descricao" hidden>
+                        <h4>Analogous Harmony</h4>
+                        <p>
+                            <strong>Analogous colors</strong> are adjacent on the color wheel, producing smooth
+                            transitions and a natural
+                            visual flow — ideal for calm, balanced designs.
+                        </p>
+                    </div>
+
+                    <div id="descricao-triade" class="descricao" hidden>
+                        <h4>Triadic Harmony</h4>
+                        <p>
+                            A <strong>triadic palette</strong> uses three evenly spaced colors on the wheel, providing
+                            contrast and variety
+                            while maintaining balance.
+                        </p>
+                    </div>
+
+                    <div id="descricao-tetradica" class="descricao" hidden>
+                        <h4>Tetradic Harmony</h4>
+                        <p>
+                            The <strong>tetradic scheme</strong> uses two complementary color pairs, resulting in rich,
+                            dynamic combinations
+                            that work well in modern and vibrant projects.
+                        </p>
+                    </div>
+
+                    <div id="descricao-monocromatica" class="descricao" hidden>
+                        <h4>Monochromatic Harmony</h4>
+                        <p>
+                            <strong>Monochromatic palettes</strong> are built from a single hue, with variations in
+                            saturation and brightness.
+                            This approach creates elegant, clean, and professional designs.
+                        </p>
+                    </div>
+                </section>
+            </section>
+            <section class="info">
+                <article>
+                    <h2>What Is a Color Code?</h2>
+                    <p>
+                        <strong>Color codes</strong> are numeric representations that define colors digitally. They
+                        ensure that the same
+                        color appears identically across all screens and devices. The most common formats are
+                        <strong>RGB</strong>,
+                        <strong>HSL</strong>, and <strong>HEX</strong>.
+                    </p>
+                </article>
+
+                <article>
+                    <h2>What Is RGB?</h2>
+                    <p>
+                        <strong>RGB</strong> stands for Red, Green, and Blue — an additive color system used in screens
+                        and digital devices.
+                        Each color is defined by three numbers (0–255) that determine intensity. By mixing them,
+                        millions of colors can be
+                        created.
+                    </p>
+                    <p>Examples: <code>RGB(255,0,0)</code> = red, <code>RGB(0,0,0)</code> = black,
+                        <code>RGB(255,255,255)</code> = white.</p>
+                </article>
+
+                <article>
+                    <h2>What Is HSL?</h2>
+                    <p>
+                        <strong>HSL</strong> stands for Hue, Saturation, and Lightness. It’s a more intuitive model for
+                        adjusting colors in
+                        design. Hue defines the base color, saturation controls intensity, and lightness adjusts
+                        brightness.
+                    </p>
+                    <p>Example: <code>HSL(0,100%,50%)</code> = pure red.</p>
+                </article>
+
+                <article>
+                    <h2>What Is HEX?</h2>
+                    <p>
+                        <strong>HEX</strong> is a compact format for representing colors using six hexadecimal digits
+                        preceded by
+                        <code>#</code>. Example: <code>#FFFFFF</code> = white, <code>#000000</code> = black,
+                        <code>#FF0000</code> = red.
+                    </p>
+                </article>
+            </section>
+        </section>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; 2025 <strong>Felipe Silva</strong>. All rights reserved.</p>
+                <p>
+                    <a href="https://github.com/felpsilva" target="_blank" rel="noopener noreferrer">GitHub</a> |
+                    <a href="https://www.linkedin.com/in/felipe-pereira-20b70a205/" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="../img01/linkedin.png" alt="LinkedIn profile of Felipe Silva" class="linkedin-icon">
+                    </a>
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="../seletor.js"></script>
+</body>
+
+</html>
