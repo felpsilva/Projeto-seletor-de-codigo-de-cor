@@ -280,7 +280,7 @@ function modoEscuro() {
 
     if (troca.checked) {
         if(paginaInternacional){
-            logo.src = getImagePath("favicon-branco.png");
+            logo.src = getImagePath("favicon-branco.PNG");
         } else {
             logo.src = getImagePath("logo.PNG");
         }
