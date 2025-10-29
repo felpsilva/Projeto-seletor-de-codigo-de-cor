@@ -279,7 +279,11 @@ function modoEscuro() {
     let tipoHarmonia = document.getElementById("tipo-harmonia");
 
     if (troca.checked) {
-        logo.src = getImagePath("logo.PNG");
+        if(paginaInternacional){
+            logo.src = getImagePath("favicon-branco.png");
+        } else {
+            logo.src = getImagePath("logo.PNG");
+        }
         main.classList.remove("main-dark");
         topo.classList.remove("topo-dark");
         corpo.classList.remove("corpo-dark");
@@ -293,7 +297,11 @@ function modoEscuro() {
         label.forEach(el => el.classList.remove("p-dark"));
         tipoHarmonia.classList.remove("selector-dark")
     } else {
-        logo.src = getImagePath("logo-black.png");
+        if(paginaInternacional){
+            logo.src = getImagePath("favicon.png");
+        } else {
+            logo.src = getImagePath("logo-black.png");
+        }
         main.classList.add("main-dark");
         topo.classList.add("topo-dark");
         corpo.classList.add("corpo-dark");
