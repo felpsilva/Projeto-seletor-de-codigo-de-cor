@@ -628,8 +628,7 @@ article.harmonia-cores h3 {
   }
 
   .harmonia-cores {
-    padding: 0 10px;
-    text-align: justify;
+    padding: 0px;
   }
 
   .harmonia-cores h3 {
@@ -638,6 +637,14 @@ article.harmonia-cores h3 {
 
   .harmonia-cores p {
     font-size: 0.95rem;
+  }
+
+  .paletas {
+    padding: 0px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: none;
+    font-family: "Open Sans", sans-serif;
   }
 }
 
