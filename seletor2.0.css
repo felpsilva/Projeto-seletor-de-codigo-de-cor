@@ -61,6 +61,7 @@ h3{
   align-items: center;
   margin: 0 auto;
   height: 60px;
+  padding: 0 20px;
 }
 
 .modo-escuro {
@@ -650,13 +651,17 @@ article.harmonia-cores h3 {
   .descricao-harmonias {
     padding: 10px;
   }
+
+  .modo-escuro {
+    margin-right: 0;
+  }
+
+  .nav {
+    padding: 0 30px;
+  }
 }
 
 @media (max-width: 850px) {
-  .logo {
-    margin-left: 50px;
-  }
-
   .corpo {
     width: 100%;
     border: 0;
