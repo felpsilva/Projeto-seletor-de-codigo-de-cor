@@ -1,20 +1,58 @@
-<div>
-<h1><a href="https://felpsilva.github.io/Projeto-seletor-de-codigo-de-cor/">Seletor de Código de  cor</a></h1>
+# 🎨 Seletor de Cores Online
 
-<h3>Neste site, é possível ter uma noção básica do que são códigos de cores, dispostos em RBG, Hexadecimal e HSL.</h3>
-<h3>Para facilitar o entendimento, tem como função trazar um exemplo na prática.</h3>
+**Seletor de Cores Online** é uma ferramenta gratuita e leve que permite identificar e analisar instantaneamente qualquer cor a partir de uma imagem.  
+O sistema exibe os valores precisos em **RGB**, **HEX** e **HSL**, gera automaticamente **variações tonais** e **paletas harmônicas**, sendo ideal para designers, desenvolvedores e criadores de conteúdo visual.
 
+ [Acesse o site](https://seletordecoronline.com.br)
 
-<p>Trata-se de um campo onde é possivel inserir uma imagem qualquer (png ou jpeg)</p>
+---
 
-![image](https://user-images.githubusercontent.com/93503496/178585329-8d50c6ce-eda8-4c65-88f3-1f17d298a8e6.png)
+## Funcionalidades
 
-<p>1º Ao passar o cursor do mouse sobre a imagem inserida</p>
-<p>A cor da localização do cursor é devolvida no campo 2º</p>
-<p>e ao clicarmos em algum ponto da imagem, temos a cor exata exibida no campo 3º </p>
-<p>Por fim no campo 4º podemos ver o codigo RGB HSL e Hexadecimal da cor do ponto onde foi clicado.</p>
+### Captura de Cores em Imagens
+- Envie qualquer imagem e clique em um ponto para obter a cor exata.
+- Exibe códigos de cor em tempo real nos formatos **HEX**, **RGB** e **HSL**.
 
-![image](https://user-images.githubusercontent.com/93503496/178583935-4da7363c-382f-44d2-91af-d7c492c9afdc.png)
+### Variações Tonais
+- Geração automática de **20 variações tonais** da cor selecionada:
+  - 10 tons **mais escuros** (adicionando preto puro em incrementos de 10%)
+  - 10 tons **mais claros** (adicionando branco puro em incrementos de 10%)
+- Ideal para criar contraste, profundidade e equilíbrio em paletas visuais.
 
-</div>
+### Paletas de Harmonia de Cores
+- Criação automática de paletas harmoniosas com base na cor selecionada:
+  - **Complementar**
+  - **Análogas**
+  - **Tríade**
+  - **Tetrádica**
+  - **Monocromática**
+- Cada tipo de harmonia vem acompanhado de uma explicação clara e visualmente descritiva.
+
+### Modo Escuro
+- Alternância suave entre **modo claro e escuro**, preservando o contraste e a fidelidade das cores.
+
+### Suporte Multilíngue
+- Totalmente traduzido e otimizado para:
+  - 🇧🇷 Português (`/`)
+  - 🇬🇧 Inglês (`/en/`)
+  - 🇪🇸 Espanhol (`/es/`)
+- Cada idioma possui **metadados e schema.org próprios**, fortalecendo o SEO internacional.
+
+### 📈 SEO e Acessibilidade
+- Estrutura otimizada com **dados estruturados (schema.org)**.
+- Layout totalmente **responsivo** e com suporte completo a **ARIA labels**.
+- Integração com **Google Analytics** e **Search Console** para acompanhamento de desempenho.
+
+---
+
+## 🧠 Tecnologias Utilizadas
+
+| Categoria | Tecnologias |
+|------------|--------------|
+| Front-end | HTML5, CSS3 (Responsivo), JavaScript (Vanilla) |
+| SEO / Analytics | Schema.org, Google Analytics, Open Graph |
+| Hospedagem | GitHub Pages / Hostinger |
+| Compatibilidade | Suporte a todos os navegadores modernos (Chrome, Edge, Firefox, Safari) |
+
+---
 
