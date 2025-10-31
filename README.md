@@ -38,14 +38,14 @@ O sistema exibe os valores precisos em **RGB**, **HEX** e **HSL**, gera automati
   - 🇪🇸 Espanhol (`/es/`)
 - Cada idioma possui **metadados e schema.org próprios**, fortalecendo o SEO internacional.
 
-### 📈 SEO e Acessibilidade
+### SEO e Acessibilidade
 - Estrutura otimizada com **dados estruturados (schema.org)**.
 - Layout totalmente **responsivo** e com suporte completo a **ARIA labels**.
 - Integração com **Google Analytics** e **Search Console** para acompanhamento de desempenho.
 
 ---
 
-## 🧠 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 | Categoria | Tecnologias |
 |------------|--------------|
