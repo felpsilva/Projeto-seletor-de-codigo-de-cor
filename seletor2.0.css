@@ -370,7 +370,7 @@ body::-webkit-scrollbar-thumb {
 /* Variações de Cores */
 .variacoes {
   width: 100%;
-  margin: 30px 20px;
+  padding: 30px 20px;
 }
 
 .variacao-de-cores,
@@ -648,7 +648,7 @@ header nav {
   }
 
   .variacoes {
-    margin: 30px 0px;
+    padding: 30px 0px;
   }
 
   .variacao-de-cores,
