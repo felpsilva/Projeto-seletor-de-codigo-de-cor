@@ -116,12 +116,19 @@
                     <img class="logo" src="/img01/logo.PNG" alt="Logo do site Seletor de Cores Online"
                         draggable="false">
                 </div>
-                <div class="modo-escuro">
-                    <label class="switch">
-                        <input type="checkbox" id="modo-escuro" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
+                <nav>
+                    <select name="idioma" id="idioma" aria-label="Selecionar idioma">
+                        <option value="/" data-flag="br">Português</option>
+                        <option value="/en/">English</option>
+                        <option value="/es/">Español</option>
+                    </select>
+                    <div class="modo-escuro">
+                        <label class="switch">
+                            <input type="checkbox" id="modo-escuro" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </nav>
             </div>
         </header>
         <section class="corpo" id="corpo">
