@@ -25,10 +25,11 @@ const selectors = {
     variationsLight: document.querySelectorAll('.variacao-de-cor-clara'),
     palettesContainer: document.querySelector('#resultado-paleta'),
     tipoHarmonia: document.getElementById("tipo-harmonia"),
-    paginaInternacional: idiomasSuportados.some(lang => window.location.pathname.includes(`/${lang}/`))
+    paginaInternacional: idiomasSuportados.some(lang => window.location.pathname.includes(`/${lang}/`)),
+    selectIdioma: document.getElementById("idioma"),
 };
 
-let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia, paginaInternacional } = selectors;
+let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia, paginaInternacional, selectIdioma } = selectors;
 
 const basePath = paginaInternacional ? './../' : './';
 
@@ -361,6 +362,20 @@ function mostrarDescricaoHarmonia(tipo) {
         descricaoAtiva.hidden = false;
     }
 }
+
+const path = window.location.pathname;
+if (path.includes("/en/")) {
+    selectIdioma.value = "/en/";
+} else if (path.includes("/es/")) {
+    selectIdioma.value = "/es/";
+} else {
+    selectIdioma.value = "/";
+}
+
+selectIdioma.addEventListener("change", (e) => {
+    const selected = e.target.value;
+    window.location.href = selected;
+});
 
 // copiar variações de cor 
 document.querySelectorAll('.cor-hex').forEach(el => {
