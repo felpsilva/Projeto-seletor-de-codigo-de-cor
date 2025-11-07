@@ -26,10 +26,9 @@ const selectors = {
     palettesContainer: document.querySelector('#resultado-paleta'),
     tipoHarmonia: document.getElementById("tipo-harmonia"),
     paginaInternacional: idiomasSuportados.some(lang => window.location.pathname.includes(`/${lang}/`)),
-    selectIdioma: document.getElementById("idioma"),
 };
 
-let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia, paginaInternacional, selectIdioma } = selectors;
+let { file, preview, image, close, msg, zoom, zoomIn, zoomOut, canvas, result, previewColor, colorOutput, harmonyType, variationsDark, variationsLight, palettesContainer, tipoHarmonia, paginaInternacional } = selectors;
 
 const basePath = paginaInternacional ? './../' : './';
 
@@ -264,60 +263,6 @@ function getImagePath(fileName) {
   return `${basePath}img01/${fileName}`;
 }
 
-function modoEscuro() {
-    let logo = document.querySelector(".logo");
-    let header = document.querySelector("header");
-    let main = document.querySelector("main");
-    let topo = document.getElementById("topo");
-    let corpo = document.getElementById("corpo");
-    let p = document.querySelectorAll("p");
-    let previewCor = document.getElementById("previewCor");
-    let selectCor = document.getElementById("selectCor");
-    let variacoesDeCores = document.querySelector(".variacao-de-cores");
-    let footer = document.querySelector("footer");
-    let paletas = document.querySelector(".paletas");
-    let label = document.querySelectorAll("label");
-    let tipoHarmonia = document.getElementById("tipo-harmonia");
-
-    if (troca.checked) {
-        if(paginaInternacional){
-            logo.src = getImagePath("favicon-branco.PNG");
-        } else {
-            logo.src = getImagePath("logo.PNG");
-        }
-        main.classList.remove("main-dark");
-        topo.classList.remove("topo-dark");
-        corpo.classList.remove("corpo-dark");
-        p.forEach(el => el.classList.remove("p-dark"));
-        previewCor.classList.remove("preview-dark");
-        selectCor.classList.remove("preview-dark");
-        resultado.classList.remove("resultado-dark");
-        variacoesDeCores.classList.remove("variacao-de-cores-dark");
-        footer.classList.remove("footer-dark");
-        paletas.classList.remove("corpo-dark");
-        label.forEach(el => el.classList.remove("p-dark"));
-        tipoHarmonia.classList.remove("selector-dark")
-    } else {
-        if(paginaInternacional){
-            logo.src = getImagePath("favicon.png");
-        } else {
-            logo.src = getImagePath("logo-black.png");
-        }
-        main.classList.add("main-dark");
-        topo.classList.add("topo-dark");
-        corpo.classList.add("corpo-dark");
-        p.forEach(el => el.classList.add("p-dark"));
-        previewCor.classList.add("preview-dark");
-        selectCor.classList.add("preview-dark");
-        resultado.classList.add("resultado-dark");
-        variacoesDeCores.classList.add("variacao-de-cores-dark");
-        footer.classList.add("footer-dark");
-        paletas.classList.add("corpo-dark");
-        label.forEach(el => el.classList.add("p-dark"));
-        tipoHarmonia.classList.add("selector-dark");
-    }
-}
-
 // -------- CÓPIA DE CORES --------
 const copiarParaAreaDeTransferencia = texto =>
     navigator.clipboard.writeText(texto)
@@ -363,20 +308,6 @@ function mostrarDescricaoHarmonia(tipo) {
     }
 }
 
-const path = window.location.pathname;
-if (path.includes("/en/")) {
-    selectIdioma.value = "/en/";
-} else if (path.includes("/es/")) {
-    selectIdioma.value = "/es/";
-} else {
-    selectIdioma.value = "/";
-}
-
-selectIdioma.addEventListener("change", (e) => {
-    const selected = e.target.value;
-    window.location.href = selected;
-});
-
 // copiar variações de cor 
 document.querySelectorAll('.cor-hex').forEach(el => {
     el.addEventListener('click', function() {
@@ -388,12 +319,6 @@ document.querySelectorAll('.cor-hex').forEach(el => {
 tipoHarmonia.addEventListener("change", () => {
     mostrarPaleta(selectCor.getAttribute("data-cor-hex"));
     mostrarDescricaoHarmonia(tipoHarmonia.value);
-});
-
-// Modo escuro 
-let troca = document.getElementById("modo-escuro");
-troca.addEventListener("change", function () {
-    modoEscuro(); 
 });
 
 // Exibe o primeiro por padrão:
