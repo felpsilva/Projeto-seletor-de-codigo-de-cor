@@ -12,6 +12,7 @@ function modoEscuro() {
     let paletas = document.querySelector(".paletas");
     let label = document.querySelectorAll("label");
     let tipoHarmonia = document.getElementById("tipo-harmonia");
+    let paginaInternacional = idiomasSuportados.some(lang => window.location.pathname.includes(`/${lang}/`));
 
     if (troca.checked) {
         if(paginaInternacional){
