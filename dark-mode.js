@@ -1,3 +1,11 @@
+const idiomasSuportados = ['en', 'es', 'fr', 'de'];
+let paginaInternacional = idiomasSuportados.some(lang => window.location.pathname.includes(`/${lang}/`));
+const basePath = paginaInternacional ? './../' : './';
+
+function getImagePath(fileName) {
+  return `${basePath}img01/${fileName}`;
+}
+
 function modoEscuro() {
     let logo = document.querySelector(".logo");
     let header = document.querySelector("header");
@@ -12,7 +20,6 @@ function modoEscuro() {
     let paletas = document.querySelector(".paletas");
     let label = document.querySelectorAll("label");
     let tipoHarmonia = document.getElementById("tipo-harmonia");
-
     if (troca.checked) {
         if(paginaInternacional){
             logo.src = getImagePath("favicon-branco.PNG");
