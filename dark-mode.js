@@ -1,3 +1,4 @@
+const idiomasSuportados = ['en', 'es', 'fr', 'de'];
 function modoEscuro() {
     let logo = document.querySelector(".logo");
     let header = document.querySelector("header");
