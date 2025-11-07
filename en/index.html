@@ -70,10 +70,8 @@
     <link rel="stylesheet" href="../seletor2.0.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Online Color Picker – Identify the Color Code from Any Image</title>
 </head>
 
@@ -82,7 +80,9 @@
         <header class="topo" id="topo">
             <div class="nav">
                 <div>
-                    <img class="logo" src="/img01/favicon-branco.PNG" alt="Online Color Picker Logo" draggable="false">
+                    <a href="/en/">
+                        <img class="logo" src="/img01/favicon-branco.PNG" alt="Online Color Picker Logo" draggable="false">
+                    </a>
                 </div>
                 <nav>
                     <select name="idioma" id="idioma" aria-label="Selecionar idioma">
@@ -308,17 +308,21 @@
             <div class="footer-content">
                 <p>&copy; 2025 <strong>Felipe Silva</strong>. All rights reserved.</p>
                 <p>
-                    <a href="https://github.com/felpsilva" target="_blank" rel="noopener noreferrer">GitHub</a> |
+                    <a href="https://github.com/felpsilva" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                    </a> |
                     <a href="https://www.linkedin.com/in/felipe-pereira-20b70a205/" target="_blank"
                         rel="noopener noreferrer">
-                        <img src="../img01/linkedin.png" alt="LinkedIn profile of Felipe Silva" class="linkedin-icon">
-                    </a>
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a> |
+                    <a href="/en/privacy-policy.html">Privacy Policy</a>
                 </p>
             </div>
         </footer>
     </main>
-
     <script src="../seletor.js"></script>
+    <script src="../dark-mode.js"></script>
+    <script src="../idioma.js"></script>
 </body>
 
 </html>
