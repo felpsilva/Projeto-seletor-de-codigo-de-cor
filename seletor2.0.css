@@ -927,3 +927,11 @@ a:hover {
   width: 25px;
   height: 25px;
 }
+@media (max-width: 350px) {
+  #idioma {
+    margin: 0px 15px;
+  }
+  .logo {
+    height: 35px;
+  }
+}
