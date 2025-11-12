@@ -1,5 +1,5 @@
-const idiomasSuportados = ['en', 'es', 'fr', 'de'];
-let paginaInternacional = idiomasSuportados.some(lang => window.location.pathname.includes(`/${lang}/`));
+let idiomas = ['en', 'es', 'fr', 'de'];
+let paginaInternacional = idiomas.some(lang => window.location.pathname.includes(`/${lang}/`));
 const basePath = paginaInternacional ? './../' : './';
 
 function getImagePath(fileName) {
