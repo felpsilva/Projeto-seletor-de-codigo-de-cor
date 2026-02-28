@@ -17,7 +17,6 @@ const selectors = {
     result: document.querySelector('#resultado'),
     previewColor: document.querySelector('#previewCor'),
     colorOutput: document.querySelector('#selectCor'),
-    darkToggle: document.querySelector('#modo-escuro'),
     harmonyType: document.querySelector('#tipo-harmonia'),
     variationsDark: document.querySelectorAll('.variacao-de-cor'),
     variationsLight: document.querySelectorAll('.variacao-de-cor-clara'),
@@ -319,4 +318,30 @@ mostrarDescricaoHarmonia("complementar");
 document.addEventListener('DOMContentLoaded', () => {
     mostrarPaleta(colorOutput.getAttribute('data-cor-hex'))
     aplicarVariacaoDeCor();
+});
+
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.querySelector(".menu");
+const header = document.querySelector("header");
+
+document.addEventListener("click", function(event) {
+    if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("menu-active");
+        header.classList.remove("header-active");
+    }
+});
+
+window.addEventListener("resize", function() {
+    if (window.innerWidth > 998) {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("menu-active");
+        header.classList.remove("header-active");
+    }
+});
+
+hamburger.addEventListener("click", function() {
+  this.classList.toggle("active");
+  navMenu.classList.toggle("menu-active");
+  header.classList.toggle("header-active");
 });
