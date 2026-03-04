@@ -82,28 +82,57 @@
     <main>
         <header class="topo" id="topo">
             <div class="nav">
-                <div>
-                    <a href="/es/">
-                        <img class="logo" src="../img01/favicon-branco.PNG"
-                            alt="Logo del sitio Selector de Colores Online" draggable="false">
-                    </a>
-                </div>
-                <nav>
-                    <select name="idioma" id="idioma" aria-label="Selecionar idioma">
-                        <option value="/" data-flag="br">Português</option>
-                        <option value="/en/" data-flag="us">English</option>
-                        <option value="/es/" data-flag="es">Español</option>
-                    </select>
-                    <div class="modo-escuro">
-                        <label class="switch">
-                            <input type="checkbox" id="modo-escuro" checked>
-                            <span class="slider"></span>
-                        </label>
+                <div class="logo-container">
+                    <div class="logo-div">
+                        <a href="/es/">
+                            <img class="logo" src="../img01/logo.PNG" alt="Logo del sitio Selector de Colores Online"
+                                draggable="false">
+                        </a>
                     </div>
-                </nav>
+                    <nav>
+                        <select name="idioma" id="idioma" aria-label="Selecionar idioma">
+                            <option value="/" data-flag="br">Português</option>
+                            <option value="/en/">English</option>
+                            <option value="/es/">Español</option>
+                        </select>
+                        <div class="modo-escuro">
+                            <label class="switch">
+                                <input type="checkbox" id="modo-escuro">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </nav>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#ferramenta">Selector de Colores</a></li>
+                        <li><a href="#tons">Tonos de color</a></li>
+                        <li><a href="#harmonia">Armonía de colores</a></li>
+                        <li><a href="#educacional">Cómo funciona</a></li>
+                        <li><a href="/sobre.html">Sobre</a></li>
+                        <!-- <li><a href="/contato.html">Contacto</a></li> -->
+                    </ul>
+                    <nav>
+                        <select name="idioma" id="idioma" aria-label="Selecionar idioma">
+                            <option value="/" data-flag="br">Português</option>
+                            <option value="/en/">English</option>
+                            <option value="/es/">Español</option>
+                        </select>
+                        <div class="modo-escuro">
+                            <label class="switch">
+                                <input type="checkbox" id="modo-escuro" checked="">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
             </div>
         </header>
-
         <section class="corpo" id="corpo">
             <section class="editorial" aria-label="Selector de colores en línea - explicación y uso">
                 <header>
@@ -391,11 +420,12 @@
                     <a href="/es/politica-privacidad.html">Política de Privacidad</a>
                 </p>
             </div>
+            <script src="../seletor.js"></script>
+            <script src="../dark-mode.js"></script>
+            <script src="../idioma.js"></script>
+            <script src="../menu.js"></script>
         </footer>
     </main>
-    <script src="../seletor.js"></script>
-    <script src="../dark-mode.js"></script>
-    <script src="../idioma.js"></script>
 </body>
 
 </html>
