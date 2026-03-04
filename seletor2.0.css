@@ -144,7 +144,7 @@ input:checked+.slider:before {
   background-color: #050505;
 }
 
-.main-dark {
+/* .main-dark {
   background-color: #121212;
   color: #e0e0e0;
   transition: all 0.5s ease-in-out;
@@ -187,6 +187,59 @@ input:checked+.slider:before {
 .logo-container-dark{
   background-color: #7d7d7d !important;
   transition: all 0.5s ease;
+} */
+
+body.dark-mode {
+  background: #121212;
+  color: #fff;
+}
+
+body.dark-mode section.corpo {
+  background: #121212;
+  color: #fff;
+}
+
+body.dark-mode section.corpo .editorial header,
+body.dark-mode section.corpo section.paletas,
+body.dark-mode section.corpo section.paletas section.descricao-harmonias  {
+  background: #121212;
+  color: #fff;
+}
+
+body.dark-mode .menu li:hover {
+  border-bottom: 1px solid #121212;
+}
+
+body.dark-mode #tipo-harmonia {
+    background-color: #292929;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+body.dark-mode header,
+body.dark-mode header .menu a,
+body.dark-mode header .nav div.logo-container{
+  background: #7d7d7d;
+  color: #0d0d0d;
+}
+
+body.dark-mode footer {
+  background: #7d7d7d;
+}
+
+body.dark-mode footer.site-footer .footer-content p,
+body.dark-mode footer.site-footer .footer-content a,
+body.dark-mode footer.site-footer .footer-content i {
+  color: #0d0d0d;
+}
+
+body.dark-mode .previewCor {
+  background: #2a2a2a;
+}
+
+body.dark-mode label,
+body.dark-mode p {
+  color: #ddd;
 }
 
 .corpo {
@@ -353,31 +406,6 @@ footer p {
   vertical-align: middle;
 }
 
-body::-webkit-scrollbar {
-  background-color: #a7a8a8;
-  width: 5px;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: rgb(58, 57, 57);
-  border-radius: 3px;
-}
-
-.preview::-webkit-scrollbar {
-  background-color: #a7a8a8;
-  width: 5px;
-  height: 5px;
-}
-
-.preview::-webkit-scrollbar-track {
-  background-color: #a7a8a8;
-}
-
-.preview::-webkit-scrollbar-thumb {
-  background: rgb(58, 57, 57);
-  border-radius: 3px;
-}
-
 /* Variações de Cores */
 .variacoes {
   width: 100%;
@@ -493,20 +521,6 @@ body::-webkit-scrollbar-thumb {
 
 .descricao-harmonias .descricao[hidden] {
   display: none !important;
-}
-
-.descricao-harmonias .descricao h4 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 0.4rem;
-}
-
-.descricao-harmonias .descricao p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #444;
 }
 
 .paletas label {

@@ -1,78 +1,48 @@
-let idiomas = ['en', 'es', 'fr', 'de'];
-let paginaInternacional = idiomas.some(lang => window.location.pathname.includes(`/${lang}/`));
+const idiomas = ['en', 'es', 'fr', 'de'];
+
+const paginaInternacional = idiomas.some(lang =>
+  window.location.pathname.includes(`/${lang}/`)
+);
+
 const basePath = paginaInternacional ? './../' : './';
 
 function getImagePath(fileName) {
   return `${basePath}img01/${fileName}`;
 }
 
-function modoEscuro() {
-    let logo = document.querySelector(".logo");
-    let header = document.querySelector("header");
-    let main = document.querySelector("main");
-    let topo = document.getElementById("topo");
-    let corpo = document.getElementById("corpo");
-    let p = document.querySelectorAll("p");
-    let previewCor = document.getElementById("previewCor");
-    let selectCor = document.getElementById("selectCor");
-    let variacoesDeCores = document.querySelector(".variacao-de-cores");
-    let footer = document.querySelector("footer");
-    let paletas = document.querySelector(".paletas");
-    let label = document.querySelectorAll("label");
-    let tipoHarmonia = document.getElementById("tipo-harmonia");
-    let logoContainer = document.querySelector(".logo-container");
-    let troca = document.querySelectorAll("#modo-escuro");
-    troca.forEach(function (element) {
-        console.log("Modo escuro ativado:", element.checked);
-        if (element.checked) {
-            troca.forEach(function (el) {
-                el.setAttribute("checked", "checked");
-            });
-            if(paginaInternacional){
-                logo.src = getImagePath("favicon-branco.PNG");
-            } else {
-                logo.src = getImagePath("logo.PNG");
-            }
-            main.classList.remove("main-dark");
-            topo.classList.remove("topo-dark");
-            corpo.classList.remove("corpo-dark");
-            p.forEach(el => el.classList.remove("p-dark"));
-            previewCor.classList.remove("preview-dark");
-            selectCor.classList.remove("preview-dark");
-            resultado.classList.remove("resultado-dark");
-            variacoesDeCores.classList.remove("variacao-de-cores-dark");
-            footer.classList.remove("footer-dark");
-            paletas.classList.remove("corpo-dark");
-            label.forEach(el => el.classList.remove("p-dark"));
-            tipoHarmonia.classList.remove("selector-dark");
-            logoContainer.classList.remove("logo-container-dark");
-        } else {
-            troca.forEach(function (el) {
-                el.removeAttribute("checked");
-            });
-            if(paginaInternacional){
-                logo.src = getImagePath("favicon.png");
-            } else {
-                logo.src = getImagePath("logo-black.png");
-            }
-            main.classList.add("main-dark");
-            topo.classList.add("topo-dark");
-            corpo.classList.add("corpo-dark");
-            p.forEach(el => el.classList.add("p-dark"));
-            previewCor.classList.add("preview-dark");
-            selectCor.classList.add("preview-dark");
-            resultado.classList.add("resultado-dark");
-            variacoesDeCores.classList.add("variacao-de-cores-dark");
-            footer.classList.add("footer-dark");
-            paletas.classList.add("corpo-dark");
-            label.forEach(el => el.classList.add("p-dark"));
-            tipoHarmonia.classList.add("selector-dark");
-            logoContainer.classList.add("logo-container-dark");
-        }
-    });
+const toggles = document.querySelectorAll("#modo-escuro");
+const body = document.body;
+const logo = document.querySelector(".logo");
+
+function atualizarLogo(modoDark) {
+  if (!logo) return;
+
+  if (modoDark) {
+    logo.src = paginaInternacional
+      ? getImagePath("favicon.png")
+      : getImagePath("logo-black.png");
+  } else {
+    logo.src = paginaInternacional
+      ? getImagePath("favicon-branco.PNG")
+      : getImagePath("logo.PNG");
+  }
 }
 
-// Modo escuro 
-let troca = document.querySelectorAll("#modo-escuro").forEach(function(element) {
-    element.addEventListener("change", modoEscuro);
+function modoEscuro(event) {
+    console.log("Modo escuro toggled");
+  const ativo = event.target.checked;
+
+  // Sincroniza todos os toggles
+  toggles.forEach(toggle => {
+    toggle.checked = ativo;
+  });
+
+  body.classList.toggle("dark-mode", ativo);
+
+  atualizarLogo(ativo);
+}
+
+// Event listener
+toggles.forEach(toggle => {
+  toggle.addEventListener("change", modoEscuro);
 });

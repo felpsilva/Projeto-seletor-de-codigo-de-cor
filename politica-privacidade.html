@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,25 +15,55 @@
     <main class="politica-privacidade">
         <header class="topo" id="topo">
             <div class="nav">
-                <div>
-                    <a href="/">
-                        <img class="logo" src="/img01/logo.PNG" alt="Logo do site Seletor de Cores Online"
-                        draggable="false">
-                    </a>
-                </div>
-                <nav>
-                    <select name="idioma" id="idioma" aria-label="Selecionar idioma">
-                        <option value="/" data-flag="br">Português</option>
-                        <option value="/en/">English</option>
-                        <option value="/es/">Español</option>
-                    </select>
-                    <div class="modo-escuro">
-                        <label class="switch">
-                            <input type="checkbox" id="modo-escuro" checked>
-                            <span class="slider"></span>
-                        </label>
+                <div class="logo-container">
+                    <div class="logo-div">
+                        <a href="/">
+                            <img class="logo" src="./img01/logo.PNG" alt="Logo do site Seletor de Cores Online"
+                                draggable="false">
+                        </a>
                     </div>
-                </nav>
+                    <nav>
+                        <select name="idioma" id="idioma" aria-label="Selecionar idioma">
+                            <option value="/" data-flag="br">Português</option>
+                            <option value="/en/">English</option>
+                            <option value="/es/">Español</option>
+                        </select>
+                        <div class="modo-escuro">
+                            <label class="switch">
+                                <input type="checkbox" id="modo-escuro">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </nav>
+                      <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#ferramenta">Seletor de Cores</a></li>
+                        <li><a href="#tons">Tons de Cor</a></li>
+                        <li><a href="#harmonia">Harmonia de Cores</a></li>
+                        <li><a href="#educacional">Como Funciona</a></li>
+                        <li><a href="/sobre.html">Sobre</a></li>
+                        <li><a href="/contato.html">Contato</a></li>
+                    </ul>
+                    <nav>
+                        <select name="idioma" id="idioma" aria-label="Selecionar idioma">
+                            <option value="/" data-flag="br">Português</option>
+                            <option value="/en/">English</option>
+                            <option value="/es/">Español</option>
+                        </select>
+                        <div class="modo-escuro">
+                            <label class="switch">
+                                <input type="checkbox" id="modo-escuro" checked="">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
             </div>
         </header>
         <section class="corpo" id="corpo">
@@ -199,10 +228,11 @@
                     <a href="/politica-privacidade.html">Política de Privacidade</a>
                 </p>
             </div>
+            <script src="dark-mode.js"></script>
+            <script src="menu.js"></script>
+            <script src="idioma.js"></script>
         </footer>
     </main>
-    <script src="dark-mode.js"></script>
-    <script src="idioma.js"></script>
 </body>
 
 </html>
