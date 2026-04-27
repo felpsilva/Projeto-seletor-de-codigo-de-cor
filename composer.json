@@ -1,0 +1,17 @@
+{
+    "name": "felipe/color-picker-webapp",
+    "description": "Aplicacao web de seletor de cores com PHP MVC + Twig",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "twig/twig": "^3.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "scripts": {
+        "serve": "php -S 0.0.0.0:8080 -t public public/index.php"
+    }
+}

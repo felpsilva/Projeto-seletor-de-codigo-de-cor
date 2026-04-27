@@ -1,0 +1,117 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <h1>{{ dict.home.hero_title }}</h1>
+        <p>{{ dict.home.hero_subtitle }}</p>
+    </div>
+    <div class="hero-steps">
+        <article>
+            <h2>{{ dict.home.upload_title }}</h2>
+            <p>{{ dict.home.upload_desc }}</p>
+        </article>
+        <article>
+            <h2>{{ dict.home.picker_title }}</h2>
+            <p>{{ dict.home.picker_desc }}</p>
+        </article>
+        <article>
+            <h2>{{ dict.home.palette_title }}</h2>
+            <p>{{ dict.home.palette_desc }}</p>
+        </article>
+    </div>
+</section>
+
+<section class="tool-grid" id="tool-app">
+    <article class="card upload-card">
+        <label for="file-input" id="dropzone">{{ dict.home.dropzone }}</label>
+        <input id="file-input" type="file" accept="image/*">
+        <div class="preview-wrap">
+            <canvas id="image-canvas" aria-label="Canvas"></canvas>
+            <p id="loading-state" hidden>Processando imagem...</p>
+        </div>
+    </article>
+
+    <article class="card output-card">
+        <h2>{{ dict.home.selected_color }}</h2>
+        <div id="color-chip" class="color-chip"></div>
+
+        <div class="code-list">
+            <div>
+                <span>HEX</span>
+                <button data-copy="hex" class="copy-btn">{{ dict.common.copy }}</button>
+                <strong id="hex-value">#4F46E5</strong>
+            </div>
+            <div>
+                <span>RGB</span>
+                <button data-copy="rgb" class="copy-btn">{{ dict.common.copy }}</button>
+                <strong id="rgb-value">rgb(79, 70, 229)</strong>
+            </div>
+            <div>
+                <span>HSL</span>
+                <button data-copy="hsl" class="copy-btn">{{ dict.common.copy }}</button>
+                <strong id="hsl-value">hsl(243, 76%, 59%)</strong>
+            </div>
+        </div>
+
+        <h3>{{ dict.home.history }}</h3>
+        <div id="history" class="history"></div>
+    </article>
+</section>
+
+<section class="palette-grid">
+    <article class="card">
+        <div class="row-between">
+            <h2>{{ dict.home.harmony }}</h2>
+            <select id="harmony-select">
+                <option value="complementary">Complementary</option>
+                <option value="analogous">Analogous</option>
+                <option value="triad">Triad</option>
+                <option value="tetradic">Tetradic</option>
+                <option value="monochromatic">Monochromatic</option>
+            </select>
+        </div>
+        <div id="harmony-palette" class="palette-row"></div>
+    </article>
+
+    <article class="card">
+        <h2>{{ dict.home.tones_light }}</h2>
+        <div id="light-scale" class="palette-row"></div>
+    </article>
+
+    <article class="card">
+        <h2>{{ dict.home.tones_dark }}</h2>
+        <div id="dark-scale" class="palette-row"></div>
+    </article>
+
+    <article class="card actions-card">
+        <button id="export-json" class="primary-btn">{{ dict.home.export_json }}</button>
+        <button id="export-png" class="ghost-btn">{{ dict.home.export_png }}</button>
+    </article>
+</section>
+
+{% if enable_ads %}
+<section class="ad-box" aria-label="Advertisement">
+    <p>{{ dict.common.ad_label }}</p>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="{{ ads_client }}" data-ad-slot="0000000000"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+</section>
+{% endif %}
+
+<section class="content-grid">
+    <article class="card">
+        <h2>{{ dict.home.educational_title }}</h2>
+        <p>{{ dict.home.educational_text }}</p>
+    </article>
+
+    <article class="card">
+        <h2>{{ dict.home.faq_title }}</h2>
+        {% for item in dict.home.faq %}
+        <details>
+            <summary>{{ item.q }}</summary>
+            <p>{{ item.a }}</p>
+        </details>
+        {% endfor %}
+    </article>
+</section>
+{% endblock %}

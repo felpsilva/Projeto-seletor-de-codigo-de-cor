@@ -1,0 +1,9 @@
+.git
+.gitignore
+node_modules
+vendor
+*.log
+.env
+README.md
+readme-en.md
+img01

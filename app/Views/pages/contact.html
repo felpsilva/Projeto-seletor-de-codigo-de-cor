@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<section class="simple-page">
+    <article class="card prose">
+        <h1>{{ dict.contact.title }}</h1>
+        <p>{{ dict.contact.intro }}</p>
+        <p><strong>{{ dict.contact.email_label }}:</strong> <a href="mailto:{{ dict.contact.email }}">{{
+                dict.contact.email }}</a></p>
+        <p>{{ dict.contact.response_time }}</p>
+    </article>
+</section>
+{% endblock %}

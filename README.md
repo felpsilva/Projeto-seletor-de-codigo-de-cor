@@ -1,58 +1,139 @@
-# 🎨 Seletor de Cores Online
+# Color Picker Studio
 
-**Seletor de Cores Online** é uma ferramenta gratuita e leve que permite identificar e analisar instantaneamente qualquer cor a partir de uma imagem.  
-O sistema exibe os valores precisos em **RGB**, **HEX** e **HSL**, gera automaticamente **variações tonais** e **paletas harmônicas**, sendo ideal para designers, desenvolvedores e criadores de conteúdo visual.
+Aplicacao web moderna para selecao de cores com arquitetura PHP MVC, Twig, SEO tecnico avancado, internacionalizacao e base pronta para monetizacao com Google AdSense.
 
- [Acesse o site](https://seletordecoronline.com.br)
+## Objetivos de produto
 
----
+- Melhorar elegibilidade para AdSense (navegacao clara, paginas institucionais, conteudo robusto)
+- Aumentar trafego organico com SEO tecnico e conteudo educativo
+- Entregar UX responsiva, rapida e orientada a retencao
+- Escalar com arquitetura limpa e separacao de responsabilidades
 
-## Funcionalidades
+## Arquitetura
 
-### Captura de Cores em Imagens
-- Envie qualquer imagem e clique em um ponto para obter a cor exata.
-- Exibe códigos de cor em tempo real nos formatos **HEX**, **RGB** e **HSL**.
+```text
+/app
+  /Controllers
+  /Models
+  /Services
+  /Views
+/public
+  /assets
+/routes
+/config
+```
 
-### Variações Tonais
-- Geração automática de **20 variações tonais** da cor selecionada:
-  - 10 tons **mais escuros** (adicionando preto puro em incrementos de 10%)
-  - 10 tons **mais claros** (adicionando branco puro em incrementos de 10%)
-- Ideal para criar contraste, profundidade e equilíbrio em paletas visuais.
+### Stack
 
-### Paletas de Harmonia de Cores
-- Criação automática de paletas harmoniosas com base na cor selecionada:
-  - **Complementar**
-  - **Análogas**
-  - **Tríade**
-  - **Tetrádica**
-  - **Monocromática**
-- Cada tipo de harmonia vem acompanhado de uma explicação clara e visualmente descritiva.
+- Backend: PHP 8.1+ (sem framework pesado)
+- Template engine: Twig
+- Frontend: CSS + JavaScript Vanilla
+- Infra: Docker (PHP-FPM + Nginx)
 
-### Modo Escuro
-- Alternância suave entre **modo claro e escuro**, preservando o contraste e a fidelidade das cores.
+## Funcionalidades principais
 
-### Suporte Multilíngue
-- Totalmente traduzido e otimizado para:
-  - 🇧🇷 Português (`/`)
-  - 🇬🇧 Inglês (`/en/`)
-  - 🇪🇸 Espanhol (`/es/`)
-- Cada idioma possui **metadados e schema.org próprios**, fortalecendo o SEO internacional.
+- Conta-gotas por pixel em canvas (client-side)
+- Conversao de cor para HEX, RGB e HSL
+- Geracao de paletas automaticas:
+  - Complementar
+  - Analoga
+  - Triade
+  - Tetradica
+  - Monocromatica
+- Geracao de escalas:
+  - Escala de luz
+  - Escala de sombra
+- Copia de cores com 1 clique
+- Historico local de cores
+- Exportacao de paleta em JSON e imagem
+- Modo escuro com persistencia via localStorage
 
-### SEO e Acessibilidade
-- Estrutura otimizada com **dados estruturados (schema.org)**.
-- Layout totalmente **responsivo** e com suporte completo a **ARIA labels**.
-- Integração com **Google Analytics** e **Search Console** para acompanhamento de desempenho.
+## SEO tecnico implementado
 
----
+- Meta tags dinamicas por rota e idioma
+- Open Graph e Twitter Cards
+- Structured Data (WebApplication, FAQPage, HowTo)
+- Canonical + hreflang + alternates
+- Sitemap dinamico em /sitemap.xml
+- Robots dinamico em /robots.txt
 
-## Tecnologias Utilizadas
+## Internacionalizacao
 
-| Categoria | Tecnologias |
-|------------|--------------|
-| Front-end | HTML5, CSS3 (Responsivo), JavaScript (Vanilla) |
-| SEO / Analytics | Schema.org, Google Analytics, Open Graph |
-| Hospedagem | GitHub Pages / Hostinger |
-| Compatibilidade | Suporte a todos os navegadores modernos (Chrome, Edge, Firefox, Safari) |
+- Idiomas suportados:
+  - Portugues: /
+  - Ingles: /en/
+  - Espanhol: /es/
+- Traducoes em arquivos dedicados:
+  - config/lang/pt.php
+  - config/lang/en.php
+  - config/lang/es.php
+
+## Paginas institucionais
+
+- Sobre
+- Contato
+- Politica de Privacidade
+- Termos de Uso
+
+## Analytics e Ads
+
+- Google Analytics preparado por variavel de ambiente
+- Estrutura de eventos pronta:
+  - pick_color
+  - copy_color_code
+  - change_harmony
+  - export_palette_json
+  - export_palette_png
+- Slots de anuncio preparados para AdSense (habilitacao por flag)
+
+## Seguranca
+
+- Sanitizacao basica de entrada
+- Nginx com bloqueio de arquivos sensiveis (.env, Dockerfile, pastas internas)
+- Processamento de imagem no cliente (sem upload no servidor)
+
+## Rodando localmente
+
+### Opcao 1: Docker
+
+```bash
+docker compose up --build
+```
+
+Aplicacao: http://localhost:8080
+
+### Opcao 2: PHP embutido
+
+```bash
+composer install
+composer dump-autoload
+php -S 0.0.0.0:8080 -t public public/index.php
+```
+
+## Variaveis de ambiente
+
+Use .env (base em .env.example):
+
+- APP_URL
+- ENABLE_ADS
+- GOOGLE_ANALYTICS_ID
+- GOOGLE_ADSENSE_CLIENT
+
+## Rotas principais
+
+- /, /en/, /es/
+- /sobre/, /en/about/, /es/sobre/
+- /contato/, /en/contact/, /es/contacto/
+- /politica-de-privacidade/, /en/privacy-policy/, /es/politica-de-privacidad/
+- /termos-de-uso/, /en/terms-of-use/, /es/terminos-de-uso/
+- /robots.txt
+- /sitemap.xml
+
+## Proximos passos recomendados
+
+- Adicionar testes de integracao de rotas (PHPUnit)
+- Incluir cache de Twig e cache HTTP para producao
+- Integrar CI para lint e validacao automatica de SEO tecnico
 
 ---
 

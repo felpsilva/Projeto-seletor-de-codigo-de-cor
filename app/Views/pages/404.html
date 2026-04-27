@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<section class="simple-page">
+    <article class="card prose">
+        <h1>{{ dict.errors.not_found_title }}</h1>
+        <p>{{ dict.errors.not_found_description }}</p>
+        <a class="primary-btn inline-btn" href="{{ routes.home[locale] }}">{{ dict.errors.back_home }}</a>
+    </article>
+</section>
+{% endblock %}
